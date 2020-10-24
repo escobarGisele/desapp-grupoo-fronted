@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-list-project',
@@ -7,31 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProjectComponent implements OnInit {
   //variable para la carga de un proyecto
-  project = '';
+  //project = '';
   //list iria con la clase nuestra 
   listProject: any[]=[];
-  constructor() { }
+  constructor( private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.getProjects();
   }
   //metodo para imprimir el proyecto
-  addProject(){
-   
-    const project={
-        name: this.project,
-        finishProject:false
-
-    };
-    console.log(this.listProject);
-    this.listProject.push(project);
-    this.project='';
-  };
-  //aca pongo index:num , pero en el proyecto nuestro cada proyecto ya trae un id q lo identifica
-  deleteProject( index :number ){
-    this.listProject.splice(index,1);
-
-  };
-  updateProyect(project,index){
-    this.listProject[index].finishProject =!project.finishProject;
+  getProjects(): void {
+    this.projectService.getProjects().subscribe(data => {
+      this.listProject = data.data;
+      console.log(data.data);
+      //this.loading = false;
+    });
   }
 }
+
