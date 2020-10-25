@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
 
-  protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/projects';
+  protected basePath = 'https://whispering-spire-55253.herokuapp.com';
   //public defaultHeaders : Headers = new Headers();
-// public url : string = '/home/projects';
+ public url : string = '/home/projects';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -19,8 +19,10 @@ export class ProjectService {
 
   public getProjects() : Observable<any> {
 
-    const path = this.basePath ;
-    //+this.url ;
+    const path = this.basePath + this.url ;
+    //'+ /open' ;
+    
+  
 
      return this.httpClient.get(path);
 

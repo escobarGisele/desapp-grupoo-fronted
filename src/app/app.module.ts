@@ -18,6 +18,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
 import { CommonModule } from '@angular/common';
+import { ListUserComponent } from './dashboard/list-user/list-user.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { CommonModule } from '@angular/common';
     NavbarComponent,
     LoginComponent,
     ResgisterComponent,
+    ListUserComponent,
+  
+  
   ],
   imports: [
     HttpClientModule,
