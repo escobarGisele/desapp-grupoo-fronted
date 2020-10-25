@@ -20,7 +20,7 @@ export class ListProjectComponent implements OnInit {
   getProjects(): void {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data.data;
-      console.log(data.data);
+      console.log(data);
       //this.loading = false;
     });
   }
