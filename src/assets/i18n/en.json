@@ -5,5 +5,15 @@
     "SignUp": "Sign up",
     "Email": "Email address",
     "Password": "Password",
-    "Submit": "Submit"
+    "Submit": "Submit",
+    "ProjectList": "Project list",
+    "RememberPassword": "Remember password",
+    "LastName": "Last name",
+    "ConfirmPassword":"Confirm password",
+    "CreateAccount": "Create account",
+    "ForgotPassword": "Do you forget your password?",
+    "InsertPassword": "Insert password",
+    "InsertUserNameOrPassword": "Insert user name or email address",
+    "UserNameOrMail": "User name",
+    "InsertEmailAddress": "Insert email address"
 }

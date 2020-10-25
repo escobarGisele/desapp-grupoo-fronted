@@ -6,11 +6,11 @@
             [(ngModel)]="project">
             <div class="input-group-append">
                 <!---- --usamos enlace de 2 vias*/ -->
-                <button type= "button" class="btn btn-success btn lg"(click)="addProject()" [disabled]="project ==''"> Add</button>
+                <button type= "button" class="btn btn-success btn lg"(click)="addProject()" [disabled]="project ==''"> {{'Add'| translate}}</button>
             </div>
         </div>
         <br>
-        <!-- <h5 *ngIf= "listProject.length==0"> No hay projectos para mostar</h5> -->
+        <!-- <h5 *ngIf= "listProject.length==0"> {{'NotProjectToShare' | translate}}</h5> -->
         <ul class="list-group">
             <!-- let i seria para poder eliminarlo -->
             <li *ngFor="let project of listProject; let i = index" 
@@ -24,14 +24,5 @@
                         </span>
             </li>
         </ul>
-    </div>
-</div>
-<div class="card" style="width: 18rem;">
-    <!-- <img [src]="imgUrl" alt="" class="card-img-top"> -->
-    <div class="card-body">
-        <h5>hola</h5>
-        <!-- <h5 class="card-title text-center">{{ firstName }}</h5>
-        <p class="card-text text-center">{{ email }}</p>
-        <button class="btn btn-primary btn-block btn-xl" >VER</button> -->
     </div>
 </div>

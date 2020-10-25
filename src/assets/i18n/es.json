@@ -5,5 +5,15 @@
     "SignUp": "Registrate",
     "Email": "Email",
     "Password": "Contraseña",
-    "Submit": "Enviar"
+    "Submit": "Enviar",
+    "ProjectList": "Lista de proyecto",
+    "RememberPassword": "Recordar contraseña",
+    "LastName": "Apellido",
+    "ConfirmPassword": "Confirmar contraseña",
+    "CreateAccount": "Crear cuenta",
+    "ForgotPassword": "¿Olvidaste tu contraseña?",
+    "InsertPassword": "Ingrese su contraseña",
+    "InsertUserNameOrPassword": "Ingrese su nombre de usuario o dirección de mail",
+    "UserNameOrMail": "Nombre de usuario",
+    "InsertEmailAddress": "Ingrese su direccion de email"
 }
