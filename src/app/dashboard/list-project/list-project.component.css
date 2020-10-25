@@ -1,3 +1,11 @@
 .cursor{
     cursor: pointer;
 }
+.mat-form-field {
+    font-size: 24px;
+    width: 100%;
+    background-color: indianred;
+  }
+  .pointer {
+    cursor: pointer;
+  }

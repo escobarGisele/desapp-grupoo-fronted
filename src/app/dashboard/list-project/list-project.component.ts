@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProjectService } from '../../services/project.service';
 
 @Component({
@@ -6,11 +7,12 @@ import { ProjectService } from '../../services/project.service';
   templateUrl: './list-project.component.html',
   styleUrls: ['./list-project.component.css']
 })
+
 export class ListProjectComponent implements OnInit {
-  //variable para la carga de un proyecto
-  //project = '';
-  //list iria con la clase nuestra 
+ 
+  loading = true;
   listProject: any[]=[];
+  
   constructor( private projectService: ProjectService) { }
 
   ngOnInit(): void {
@@ -36,12 +38,15 @@ export class ListProjectComponent implements OnInit {
     //this.listProject[index].finishProject =!project.finishProject;
   //}
   //metodo para imprimir el proyecto
+  
   getProjects(): void {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data;
       console.log(data);
-      //this.loading = false;
+      this.loading = false;
     });
   }
+  
+  
 }
 

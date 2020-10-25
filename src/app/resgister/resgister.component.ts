@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resgister.component.css']
 })
 export class ResgisterComponent implements OnInit {
-
+  loading= true;
   constructor() { }
 
   ngOnInit(): void {

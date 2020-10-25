@@ -18,7 +18,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
 import { CommonModule } from '@angular/common';
-import { ListUserComponent } from './dashboard/list-user/list-user.component';
+import { AngularMaterialModule } from './dashboard/shared/angular-material/angular-material.module';
+import { LoadingComponent } from './dashboard/loading/loading.component';
+import { UserComponent } from './dashboard/user/user.component';
+import { DonationComponent } from './dashboard/donation/donation.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { ListUserComponent } from './dashboard/list-user/list-user.component';
     NavbarComponent,
     LoginComponent,
     ResgisterComponent,
-    ListUserComponent,
+    LoadingComponent,
+    UserComponent,
+    DonationComponent,
+
   
   
   ],
@@ -39,6 +45,8 @@ import { ListUserComponent } from './dashboard/list-user/list-user.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularMaterialModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

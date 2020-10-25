@@ -1,0 +1,26 @@
+<app-loading *ngIf="loading"></app-loading>
+<h1 style="background-color: blueviolet;">donation</h1>
+<table class="table table-bordered table-dark">
+    <thead class="thead-dark" >
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">UserDonator</th>
+        <!-- <th scope="col">startDate</th>
+        <th scope="col">Location</th> -->
+      </tr>
+    </thead>
+    <tbody *ngFor="let donation of listDonations; let i = index">
+      <tr>
+       
+        <td>{{user.name}}</td>
+        <td>{{project.name}}</td>
+        <!-- <td>{{project.startDate}}</td>
+        <td>{{project.location.name}}</td> -->
+
+      </tr>
+      
+    </tbody>
+  </table>
+  
+  
+
