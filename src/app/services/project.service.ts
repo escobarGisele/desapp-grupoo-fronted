@@ -24,5 +24,6 @@ export class ProjectService {
 
      return this.httpClient.get(path);
 
-}
+  }
+  
 }

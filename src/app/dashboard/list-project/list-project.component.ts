@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { ProjectService } from '../../services/project.service';
+
 
 @Component({
   selector: 'app-list-project',
@@ -9,14 +12,18 @@ import { ProjectService } from '../../services/project.service';
 })
 
 export class ListProjectComponent implements OnInit {
- 
+  dataSource = new MatTableDataSource();
   loading = true;
   listProject: any[]=[];
   
-  constructor( private projectService: ProjectService) { }
+  constructor( private projectService: ProjectService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProjects();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   //addProject(){
 
@@ -30,10 +37,14 @@ export class ListProjectComponent implements OnInit {
     //this.project='';
   //};
   //aca pongo index:num , pero en el proyecto nuestro cada proyecto ya trae un id q lo identifica
-  //deleteProject( index :number ){
-   // this.listProject.splice(index,1);
+  deleteProject( index :number ){
+    this.listProject.splice(index,1);
+  }
+    
 
-  //};
+
+  
+  
   //updateProyect(project,index){
     //this.listProject[index].finishProject =!project.finishProject;
   //}
@@ -43,6 +54,7 @@ export class ListProjectComponent implements OnInit {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data;
       console.log(data);
+      this.dataSource = new MatTableDataSource(this.listProject);
       this.loading = false;
     });
   }

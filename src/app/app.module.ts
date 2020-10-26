@@ -22,6 +22,7 @@ import { AngularMaterialModule } from './dashboard/shared/angular-material/angul
 import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -53,7 +54,9 @@ import { DonationComponent } from './dashboard/donation/donation.component';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
