@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { ProjectService } from '../../services/project.service';
+import { MessagesComponent } from '../shared/messages/messages.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ListProjectComponent implements OnInit {
   loading = true;
   listProject: any[]=[];
   
-  constructor( private projectService: ProjectService, public dialog: MatDialog) { }
+  constructor( private projectService: ProjectService, public dialog: MatDialog, public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -38,7 +39,20 @@ export class ListProjectComponent implements OnInit {
   //};
   //aca pongo index:num , pero en el proyecto nuestro cada proyecto ya trae un id q lo identifica
   deleteProject( index :number ){
-    this.listProject.splice(index,1);
+    const dialogRef = this.dialog.open(MessagesComponent, {
+      width: '250px',
+      data: {message: 'Delete the project?'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'accept'){
+        this.listProject.splice(index,1);
+        this.snackBar.open('Project successfully deleted', '', {duration: 30000})
+      }
+      
+    });
+
+    
   }
     
 

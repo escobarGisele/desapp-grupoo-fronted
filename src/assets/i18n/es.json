@@ -15,5 +15,6 @@
     "InsertPassword": "Ingrese su contraseña",
     "InsertUserNameOrPassword": "Ingrese su nombre de usuario o dirección de mail",
     "UserNameOrMail": "Nombre de usuario",
-    "InsertEmailAddress": "Ingrese su direccion de email"
+    "InsertEmailAddress": "Ingrese su direccion de email",
+    "Add": "Agregar"
 }

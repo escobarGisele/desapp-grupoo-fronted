@@ -4,6 +4,16 @@
                 <!-- <button type= "button" class="btn btn-success btn lg"> {{'Add'| translate}}</button> -->
 
         <!-- <h5 *ngIf= "listProject.length==0"> {{'NotProjectToShare' | translate}}</h5> -->
+        <div class="row">
+          <div class="col-lg-4">
+            <p> <strong> <h1>{{'ProjectList' | translate}}</h1></strong> </p>
+          </div>
+          <div class="col-lg-8" style="text-align: right;">
+            <!-- routerLink="/add" -->
+            <button mat-raised-button color="warn" routerLink="/add">{{'Add' | translate}}</button>
+          </div>
+        </div>
+        
         <mat-form-field>
           <mat-label>Search</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="search" >
@@ -11,7 +21,7 @@
         </mat-form-field>
 
         <app-loading *ngIf="loading"></app-loading>
-        <table class="table table-bordered table-dark">
+        <table class="table table-bordered table-light">
             <thead class="thead-dark" >
               <tr>
                 <th scope="col">Name</th>

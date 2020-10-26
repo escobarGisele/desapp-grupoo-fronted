@@ -15,5 +15,6 @@
     "InsertPassword": "Insert password",
     "InsertUserNameOrPassword": "Insert user name or email address",
     "UserNameOrMail": "User name",
-    "InsertEmailAddress": "Insert email address"
+    "InsertEmailAddress": "Insert email address",
+    "Add": "Add"
 }
