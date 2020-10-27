@@ -23,8 +23,7 @@ import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessagesComponent } from './dashboard/shared/messages/messages.component';
-import { AddProjectComponent } from './dashboard/add-project/add-project.component';
+import { MessagesComponent } from './dashboard/shared/messages/messages.component';;
 
 
 @NgModule({
@@ -40,8 +39,7 @@ import { AddProjectComponent } from './dashboard/add-project/add-project.compone
     UserComponent,
     DonationComponent,
     MessagesComponent,
-    AddProjectComponent,
-
+    
   
   
   ],

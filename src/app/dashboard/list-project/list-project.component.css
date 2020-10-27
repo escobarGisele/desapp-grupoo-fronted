@@ -5,3 +5,7 @@
     button:focus{
       outline: none;
     }
+    .form-group{
+      color: rgb(204, 126, 23);
+      
+    }

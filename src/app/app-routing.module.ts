@@ -5,7 +5,7 @@ import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { LoginComponent } from './login/login.component';
 import { ResgisterComponent } from './resgister/resgister.component';
-import { AddProjectComponent } from './dashboard/add-project/add-project.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -14,8 +14,6 @@ const routes: Routes = [
  {path:'user', component : UserComponent},
  {path:'resgister', component : ResgisterComponent},
  {path:'donation', component : DonationComponent},
- {path:'add', component : AddProjectComponent},
-
 ];
 
 @NgModule({

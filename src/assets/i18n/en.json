@@ -16,5 +16,16 @@
     "InsertUserNameOrPassword": "Insert user name or email address",
     "UserNameOrMail": "User name",
     "InsertEmailAddress": "Insert email address",
-    "Add": "Add"
+    "Add": "Add",
+    "CreateProject": "Crate Project",
+    "EnterANewName": "Enter a new name",
+    "EndDate": "End date",
+    "EnterANewEndDate":"Enter a new end date",
+    "StartDate": "Start date",
+    "Location": "Location",
+    "EnterANewLocation":"Enter a new location",
+    "Save":"Save",
+    "Edit": "Edit",
+    "delete":"Borrar"
+
 }

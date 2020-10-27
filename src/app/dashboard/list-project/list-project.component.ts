@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjectService } from '../../services/project.service';
 import { MessagesComponent } from '../shared/messages/messages.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -16,23 +17,28 @@ export class ListProjectComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
   listProject: any[]=[];
-  
-  
   msg:string = '';
-
-  
-  
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
 
 
   
-  constructor( private projectService: ProjectService, public dialog: MatDialog, public snackBar:MatSnackBar) { }
+  constructor(public translate: TranslateService, private projectService: ProjectService, 
+    public dialog: MatDialog, public snackBar:MatSnackBar) 
+  {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
+  }
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
 
   ngOnInit(): void {
     this.getProjects();
   }
+  
   getProjects(): void {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data;
@@ -47,11 +53,6 @@ export class ListProjectComponent implements OnInit {
     this.listProject.push(this.model);
     this.msg = 'campo agregado';
   }
-
- 
-
-  
-
   //
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -72,14 +73,6 @@ export class ListProjectComponent implements OnInit {
       
     });    
   }
-     
-
-
-  
-  
-  
-  //metodo para imprimir el proyecto
-  
   
   
 }

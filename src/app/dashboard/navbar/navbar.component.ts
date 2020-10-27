@@ -10,7 +10,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public translate: TranslateService
-  ) {
+  ) 
+  {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
   }

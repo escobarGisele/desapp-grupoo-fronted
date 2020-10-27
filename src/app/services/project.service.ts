@@ -25,5 +25,12 @@ export class ProjectService {
      return this.httpClient.get(path);
 
   }
-  
+  public getProjectsOpen() : Observable<any> {
+
+    const path = this.basePath + this.url+ '/open' ;
+    
+
+     return this.httpClient.get(path);
+
+  }
 }

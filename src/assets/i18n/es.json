@@ -16,5 +16,16 @@
     "InsertUserNameOrPassword": "Ingrese su nombre de usuario o dirección de mail",
     "UserNameOrMail": "Nombre de usuario",
     "InsertEmailAddress": "Ingrese su direccion de email",
-    "Add": "Agregar"
+    "Add": "Agregar",
+    "CreateProject": "Crear Proyecto",
+    "EnterANewName": "Ingresar un nuevo nombre",
+    "EndDate": "Ingresar fecha de fin",
+    "EnterANewEndDate": "Ingresar un nueva fecha",
+    "StartDate":"Ingresar fecha de inicio",
+    "Location": "Localidad",
+    "EnterANewLocation": "Ingrese una nueva localidad",
+    "Save": "Guardar",
+    "Edit": "Editar",
+    "delete": "Borrar"
+    
 }
