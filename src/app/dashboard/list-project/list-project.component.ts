@@ -17,27 +17,47 @@ export class ListProjectComponent implements OnInit {
   loading = true;
   listProject: any[]=[];
   
+  
+  msg:string = '';
+
+  
+  
+  model:any = {};
+  model2:any = {};
+  hideUpdate:boolean = true;
+
+
+  
   constructor( private projectService: ProjectService, public dialog: MatDialog, public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.getProjects();
   }
+  getProjects(): void {
+    this.projectService.getProjects().subscribe(data => {
+      this.listProject = data;
+      console.log(data);
+      this.dataSource = new MatTableDataSource(this.listProject);
+      this.loading = false;
+    });
+  }
+ 
+  ///
+  addProject():void{
+    this.listProject.push(this.model);
+    this.msg = 'campo agregado';
+  }
+
+ 
+
+  
+
+  //
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  //addProject(){
-
-    //const project={
-      //  name: this.project,
-        //finishProject:false
-
-    //};
-    //console.log(this.listProject);
-    //this.listProject.push(project);
-    //this.project='';
-  //};
-  //aca pongo index:num , pero en el proyecto nuestro cada proyecto ya trae un id q lo identifica
+  
   deleteProject( index :number ){
     const dialogRef = this.dialog.open(MessagesComponent, {
       width: '250px',
@@ -50,28 +70,16 @@ export class ListProjectComponent implements OnInit {
         this.snackBar.open('Project successfully deleted', '', {duration: 30000})
       }
       
-    });
-
-    
+    });    
   }
-    
+     
 
 
   
   
-  //updateProyect(project,index){
-    //this.listProject[index].finishProject =!project.finishProject;
-  //}
+  
   //metodo para imprimir el proyecto
   
-  getProjects(): void {
-    this.projectService.getProjects().subscribe(data => {
-      this.listProject = data;
-      console.log(data);
-      this.dataSource = new MatTableDataSource(this.listProject);
-      this.loading = false;
-    });
-  }
   
   
 }
