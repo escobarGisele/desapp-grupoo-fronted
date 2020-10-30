@@ -13,6 +13,7 @@ export class LocationService {
   });
   
   constructor(private httpClient: HttpClient) { }
+
   public getLocations() : Observable<any> {
 
     const path = this.basePath + this.url ;
@@ -20,5 +21,16 @@ export class LocationService {
 
      return this.httpClient.get(path);
 
-}
+  }
+  
+  public getTop10WithMoreTimeWithoutDonations() : Observable<any> {
+
+    const path = this.basePath + this.url +'/Top10WithMoreTimeWithoutDonations' ;
+    
+
+     return this.httpClient.get(path);
+
+  }
+  
+
 }

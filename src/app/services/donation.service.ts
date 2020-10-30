@@ -14,6 +14,7 @@ export class DonationService {
   });
   
   constructor(private httpClient: HttpClient) { }
+
     public getDonations() : Observable<any> {
 
       const path = this.basePath + this.url ;
@@ -22,5 +23,14 @@ export class DonationService {
        return this.httpClient.get(path);
   
   }
+
+  public getDonationsId(id:number) : Observable<any> {
+
+    const path = this.basePath + this.url +'{id}';
+    
+
+     return this.httpClient.get(path);
+
+}
   
 }

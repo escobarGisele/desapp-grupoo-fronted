@@ -33,4 +33,14 @@ export class ProjectService {
      return this.httpClient.get(path);
 
   }
+  
+  public getProjectsNextToEnd() : Observable<any> {
+
+    const path = this.basePath + this.url+ '/nextToEnd' ;
+    
+
+     return this.httpClient.get(path);
+
+  }
+
 }

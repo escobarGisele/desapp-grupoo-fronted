@@ -21,10 +21,24 @@ export class UserService {
         return this.httpClient.get(path);
 
     }
+
     public getUsersId(id:number) : Observable<any> {
       const path = this.basePath + this.url + '$/{id}';
         return this.httpClient.get(path);
 
     }
+
+    public getUserPoints() : Observable<any> {
+      const path = this.basePath + this.url + '/points';
+        return this.httpClient.get(path);
+
+    }
+    
+    public getRankingDonators() : Observable<any> {
+      const path = this.basePath + this.url + '/rankingDonators';
+        return this.httpClient.get(path);
+
+    }
+
 
 }
