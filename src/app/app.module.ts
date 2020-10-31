@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,7 +25,7 @@ import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesComponent } from './dashboard/shared/messages/messages.component';import { MatButton, MatButtonModule } from '@angular/material/button';
 import { TooltipModule } from 'ng2-tooltip-directive';
-
+import { SelectComponent } from 'src/app/dashboard/list-project/select.component';
 
 @NgModule({
   declarations: [
@@ -39,15 +39,17 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     LoadingComponent,
     UserComponent,
     DonationComponent,
-    MessagesComponent
+    MessagesComponent,
+    SelectComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     TooltipModule,
     AppRoutingModule,
-    FormsModule,
     AngularMaterialModule,
     TranslateModule.forRoot({
       loader: {

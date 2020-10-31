@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProjectService } from '../../services/project.service';
 import { MessagesComponent } from '../shared/messages/messages.component';
 import { TranslateService } from '@ngx-translate/core';
+import {ModalComponent} from 'src/app/dashboard/list-project/new-project.component';
 
 @Component({
   selector: 'app-list-project',
@@ -46,7 +47,16 @@ export class ListProjectComponent implements OnInit {
       this.loading = false;
     });
   }
- 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.email = result;
+    });
+  }
   // addProject():void{
   //   this.listProject.push(this.model);
   //   this.msg = 'campo agregado';
