@@ -27,6 +27,9 @@
     "Save":"Save",
     "Edit": "Edit",
     "delete":"Borrar",
-    "NewProject": "New project"
+    "NewProject": "New project",
+    "CloseProyect":"Close project",
+    "View": "View",
+    "Donate": "Donate"
 
 }

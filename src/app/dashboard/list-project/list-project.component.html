@@ -7,7 +7,7 @@
           <h2>List Project: </h2>
         </div>
         <div class="col-sm-6 col-xs-6" style="text-align: right;">
-          <button mat-flat-button color="accent">+</button>
+          <button *ngIf="isAdmin" mat-flat-button color="accent">+</button>
         </div>
       </div>
         
@@ -29,16 +29,19 @@
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
             <td>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color: #3ea4df;">
+              
+              <a class="pointer" routerLink="edit/{{ i }}" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin">edit</mat-icon>
               </a>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightcoral">
-                <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
+              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
+                <md-tooltip md-direction="top">
+                  <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
+                </md-tooltip>
               </a>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightgreen">
+              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
                 <mat-icon *ngIf="!isAdmin">monetization_on</mat-icon>
               </a>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightslategray">
+              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightslategray" tooltip="{{'View' | translate}}">
                 <mat-icon>visibility</mat-icon>
               </a>
             </td>

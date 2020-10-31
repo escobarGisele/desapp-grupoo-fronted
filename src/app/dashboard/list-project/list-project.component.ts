@@ -6,7 +6,6 @@ import { ProjectService } from '../../services/project.service';
 import { MessagesComponent } from '../shared/messages/messages.component';
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Component({
   selector: 'app-list-project',
   templateUrl: './list-project.component.html',

@@ -23,7 +23,8 @@ import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessagesComponent } from './dashboard/shared/messages/messages.component';;
+import { MessagesComponent } from './dashboard/shared/messages/messages.component';import { MatButton, MatButtonModule } from '@angular/material/button';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 @NgModule({
@@ -38,27 +39,23 @@ import { MessagesComponent } from './dashboard/shared/messages/messages.componen
     LoadingComponent,
     UserComponent,
     DonationComponent,
-    MessagesComponent,
-    
-  
-  
+    MessagesComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    TooltipModule,
     AppRoutingModule,
     FormsModule,
     AngularMaterialModule,
-    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    }),
-    
-    BrowserAnimationsModule
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
