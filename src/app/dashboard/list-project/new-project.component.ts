@@ -17,7 +17,7 @@ export class DialogOverviewExample {
     name: string;
     selectedValue = 1;
 
-    constructor(public dialog: MatDialog) { }
+    constructor(public dialog: MatDialog, public selector:SelectComponent) { }
     
     openDialog(): void {
         const dialogRef = this.dialog.open(ModalComponent, {
@@ -32,9 +32,13 @@ export class DialogOverviewExample {
     }
 }
 
+@Component({
+    selector: 'new-project.dialog',
+    templateUrl: 'new-project.dialog.html',
+})
 export class ModalComponent {
 
-    constructor(public dialogRef: MatDialogRef<ModalComponent>, public c:SelectComponent,
+    constructor(public dialogRef: MatDialogRef<ModalComponent>,// ,
         @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
     onNoClick(): void {

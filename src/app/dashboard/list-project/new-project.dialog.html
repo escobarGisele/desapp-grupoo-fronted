@@ -16,8 +16,9 @@
               Location
             </label>
             <div class="col-sm-10">
-                  <select  name="locations" ng-model="selectedValue">
-                    <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>
+                  <select name="locations" ng-model="selectedValue">
+                    <!-- <option *ngFor="let c of countries; " [ngValue]="c">{{c.name}}</option> -->
+                    <option *ngFor="let c of countries" value="c.id">{{c.name}}</option>
                   </select>
             </div>
           </div>
@@ -49,7 +50,7 @@
 <div mat-dialog-actions>
     <div class="row">
         <div class="col-sm-6 col-xs-6">
-            <button type="reset" class="btn btn-default">Cancel</button>
+            <button type="reset" class="btn btn-default" (click)="onNoClick()">Cancel</button>
         </div>
         <div class="col-sm-6 col-xs-6" style="text-align: right;">
             <button type="submit" class="btn btn-danger">Save</button>

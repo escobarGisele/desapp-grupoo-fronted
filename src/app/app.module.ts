@@ -45,6 +45,7 @@ import { SelectComponent } from 'src/app/dashboard/list-project/select.component
   imports: [
     HttpClientModule,
     BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
