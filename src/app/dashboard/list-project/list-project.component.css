@@ -1,6 +1,7 @@
 
   h2{
-      background-color: yellowgreen;
+    color: antiquewhite;
+    background-color: rgba(0, 0, 0, 0.14);
     }
     button:focus{
       outline: none;

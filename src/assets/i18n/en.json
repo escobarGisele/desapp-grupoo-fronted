@@ -26,6 +26,7 @@
     "EnterANewLocation":"Enter a new location",
     "Save":"Save",
     "Edit": "Edit",
-    "delete":"Borrar"
+    "delete":"Borrar",
+    "NewProject": "New project"
 
 }

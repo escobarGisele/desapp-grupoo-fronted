@@ -21,7 +21,8 @@ export class ListProjectComponent implements OnInit {
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
-
+  isAdmin: boolean = true;
+  
 
   
   constructor(public translate: TranslateService, private projectService: ProjectService, 
@@ -42,37 +43,35 @@ export class ListProjectComponent implements OnInit {
   getProjects(): void {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data;
-      console.log(data);
       this.dataSource = new MatTableDataSource(this.listProject);
       this.loading = false;
     });
   }
  
-  ///
-  addProject():void{
-    this.listProject.push(this.model);
-    this.msg = 'campo agregado';
-  }
+  // addProject():void{
+  //   this.listProject.push(this.model);
+  //   this.msg = 'campo agregado';
+  // }
   //
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
   
-  deleteProject( index :number ){
-    const dialogRef = this.dialog.open(MessagesComponent, {
-      width: '250px',
-      data: {message: 'Delete the project?'}
-    });
+  // deleteProject( index :number ){
+  //   const dialogRef = this.dialog.open(MessagesComponent, {
+  //     width: '250px',
+  //     data: {message: 'Delete the project?'}
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result === 'accept'){
-        this.listProject.splice(index,1);
-        this.snackBar.open('Project successfully deleted', '', {duration: 30000})
-      }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if(result === 'accept'){
+  //       this.listProject.splice(index,1);
+  //       this.snackBar.open('Project successfully deleted', '', {duration: 30000})
+  //     }
       
-    });    
-  }
+  //   });    
+  // }
   
   
 }
