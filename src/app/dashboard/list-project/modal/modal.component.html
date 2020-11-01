@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Crear Proyecto</h1>
+<div mat-dialog-content>
+  <p>Aca iria algo </p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+</div>
+
+<form>
+    <!-- <h4>mat-select</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Favorite food</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected food: {{selectedValue}} </p> -->
+    <label for="localidad">Localidad <br>
+        <select name="localidad"> 
+            <option>- Seleccionar una Localidad-</option>
+            <option >Quilmes</option>
+            <!-- <option value="tarde">{{project.name}}</option> -->
+            <option value="sarasa">Saraza</option>
+        </select>
+    </label>
+  </form>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjectService } from '../../services/project.service';
-import { MessagesComponent } from '../shared/messages/messages.component';
+
 import { TranslateService } from '@ngx-translate/core';
-import {ModalComponent} from 'src/app/dashboard/list-project/new-project.component';
+import { ModalComponent } from './modal/modal.component';
+
 
 @Component({
   selector: 'app-list-project',
@@ -47,16 +48,7 @@ export class ListProjectComponent implements OnInit {
       this.loading = false;
     });
   }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      width: '500px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // this.email = result;
-    });
-  }
+  
   // addProject():void{
   //   this.listProject.push(this.model);
   //   this.msg = 'campo agregado';
@@ -67,21 +59,36 @@ export class ListProjectComponent implements OnInit {
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
   // }
   
-  // deleteProject( index :number ){
-  //   const dialogRef = this.dialog.open(MessagesComponent, {
-  //     width: '250px',
-  //     data: {message: 'Delete the project?'}
-  //   });
+   //deleteProject( index :number ){
+     //const dialogRef = this.dialog.open(ModalComponent, {
+       //width: '250px',
+       //data: {message: 'Delete the project?'}
+     //});
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if(result === 'accept'){
-  //       this.listProject.splice(index,1);
-  //       this.snackBar.open('Project successfully deleted', '', {duration: 30000})
-  //     }
+     //dialogRef.afterClosed().subscribe(result => {
+       //if(result === 'accept'){
+         //this.listProject.splice(index,1);
+         //this.snackBar.open('Project successfully deleted', '', {duration: 30000})
+       //}
       
-  //   });    
-  // }
-  
+     //});    
+   //}
+   createProject( index :number ){
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '250px',
+      //data: {message: 'Delete the project?'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'accept'){
+        this.listProject.splice(index,1);
+        //Este snackBar es para cuando el usuario hace click
+        //tire el msj se cargo el proyecto
+        this.snackBar.open('Creo un nuevo proyecto exitosamente', '', {duration: 30000})
+      }
+     
+    });    
+  }  
   
 }
 
