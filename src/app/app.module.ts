@@ -25,6 +25,8 @@ import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesComponent } from './dashboard/shared/messages/messages.component';;
 
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,13 @@ import { MessagesComponent } from './dashboard/shared/messages/messages.componen
       }
     }),
     
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'dev-d8bhv2ic.us.auth0.com',
+      clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
