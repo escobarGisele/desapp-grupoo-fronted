@@ -20,7 +20,7 @@
     <p> Selected food: {{selectedValue}} </p> -->
     <label for="localidad">Localidad <br>
       <select [(ngModel)]="location" formControlName="locationControl" class="form-control" [formGroup]="newProjectForm"> 
-        <option *ngFor="let elem of locationList" [ngValue]="elem.code" [selected]="elem.code=='ITA'">{{ elem.description}}</option> 
+        <option *ngFor="let elem of locationList" [ngValue]="elem.code" [selected]="elem.code=='ITA'">{{ elem.name + ' (' + elem.province + ')'}}</option> 
         </select>
     </label>
   </form>

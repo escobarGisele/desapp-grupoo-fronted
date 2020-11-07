@@ -75,7 +75,7 @@ export class ListProjectComponent implements OnInit {
    //}
    createProject( index :number ){
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '250px',
+      // width: '250px',
       //data: {message: 'Delete the project?'}
     });
 
