@@ -43,6 +43,7 @@ export class ListProjectComponent implements OnInit {
   
   getProjects(): void {
     this.projectService.getProjects().subscribe(data => {
+      console.log(data)
       this.listProject = data;
       this.dataSource = new MatTableDataSource(this.listProject);
       this.loading = false;
