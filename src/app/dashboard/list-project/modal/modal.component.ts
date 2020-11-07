@@ -10,13 +10,13 @@ import { FormGroup, FormControl } from '@angular/forms'
 })
 export class ModalComponent implements OnInit {
   
-  myval:any; // or your type
+  location:any; 
 
-  myForm:FormGroup = new FormGroup({
-    nationality: new FormControl('')
+  newProjectForm:FormGroup = new FormGroup({
+    locationControl: new FormControl('')
   });
 
-  nationalityList = [
+  locationList = [
     { description: 'NATIONALITY_ITALIAN', code: 'ITA' },
     { description: 'NATIONALITY_FOREIGN', code: 'EST' }
   ];
@@ -26,15 +26,11 @@ export class ModalComponent implements OnInit {
   
 
   ngOnInit() {
-   this.myval = this.nationalityList[0]; // for example
+    this.location = this.locationList[0];
   }
-  // 
-  // ngOnInit(): void {
   
-  // }
- 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

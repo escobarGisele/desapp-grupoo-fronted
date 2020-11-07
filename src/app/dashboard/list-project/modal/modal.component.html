@@ -7,7 +7,7 @@
   </mat-form-field> -->
 </div>
 
-<form [formGroup]="myForm" novalidat>
+<form [formGroup]="newProjectForm" novalidat>
     <!-- <h4>mat-select</h4>
     <mat-form-field appearance="fill">
       <mat-label>Favorite food</mat-label>
@@ -19,8 +19,8 @@
     </mat-form-field>
     <p> Selected food: {{selectedValue}} </p> -->
     <label for="localidad">Localidad <br>
-      <select [(ngModel)]="myval" formControlName="nationality" class="form-control" [formGroup]="myForm"> 
-        <option *ngFor="let elem of nationalityList" [ngValue]="elem.code" [selected]="elem.code=='ITA'">{{ elem.description}}</option> 
+      <select [(ngModel)]="location" formControlName="locationControl" class="form-control" [formGroup]="newProjectForm"> 
+        <option *ngFor="let elem of locationList" [ngValue]="elem.code" [selected]="elem.code=='ITA'">{{ elem.description}}</option> 
         </select>
     </label>
   </form>
