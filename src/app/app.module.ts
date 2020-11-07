@@ -27,6 +27,8 @@ import { MessagesComponent } from './dashboard/shared/messages/messages.componen
 
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { AuthModule } from '@auth0/auth0-angular';
     }),
     
     BrowserAnimationsModule,
-
+    NgbModule,
+    FontAwesomeModule,
     // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'dev-d8bhv2ic.us.auth0.com',
