@@ -25,7 +25,7 @@ import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesComponent } from './dashboard/shared/messages/messages.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import { ModalComponent } from './dashboard/list-project/modal/modal.component';
+import { CreateEditModalComponent } from './dashboard/list-project/createEditProject/modal.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -42,7 +42,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
     UserComponent,
     DonationComponent,
     MessagesComponent,
-    ModalComponent,
+    CreateEditModalComponent,
     
   ],
   imports: [
@@ -66,7 +66,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
-    ModalComponent
+    CreateEditModalComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -27,9 +27,7 @@
             <td>{{project.endDate}}</td>
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
-            <td>{{i}}</td>
             <td>
-              
               <a class="pointer" (click)="editProject(i)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 

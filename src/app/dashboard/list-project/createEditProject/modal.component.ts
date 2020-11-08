@@ -12,7 +12,7 @@ import { ListProjectComponent } from '../list-project.component';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class CreateEditModalComponent implements OnInit {
   
   location:any; 
   loading = true;
@@ -23,7 +23,7 @@ export class ModalComponent implements OnInit {
   idProject:number;
   locationList: any[]=[];
 
-  constructor(  public dialogRef: MatDialogRef<ModalComponent>,
+  constructor(  public dialogRef: MatDialogRef<CreateEditModalComponent>,
                 private locationService: LocationService, 
                 private fb: FormBuilder,
                 private projectService: ProjectService, 
@@ -32,7 +32,10 @@ export class ModalComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any) 
   {
     this.createForm();
-    this.idProject= data.idProject;
+    if(data != null){
+      console.log(data.project)
+      this.idProject= data.idProject;
+    }
   }
   
   ngOnInit() {

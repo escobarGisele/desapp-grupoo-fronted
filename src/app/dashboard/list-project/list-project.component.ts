@@ -5,8 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProjectService } from '../../services/project.service';
 
 import { TranslateService } from '@ngx-translate/core';
-import { ModalComponent } from './modal/modal.component';
-import { Observable } from 'rxjs';
+import { CreateEditModalComponent } from './createEditProject/modal.component';
 
 
 @Component({
@@ -53,14 +52,17 @@ export class ListProjectComponent implements OnInit {
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
   // }
   createProject(){
-    const dialogRef = this.dialog.open(ModalComponent, {});    
+    const dialogRef = this.dialog.open(CreateEditModalComponent, {});    
   } 
 
   editProject(idProject): void{
-    const dialogRef = this.dialog.open(ModalComponent, {
-      // width: '250px',
-      data: { idProject: idProject }
-    });
+    // this.projectService.getProjectById(idProject).subscribe(data => {
+      this.dialog.open(CreateEditModalComponent, {
+        data: { idProject: idProject, project: "se deja asi hasta que se tenga en produccion el getBuyId de proyecto"}//data }
+      });
+    // });
+
+    
   }
   
 }
