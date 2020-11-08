@@ -11,9 +11,6 @@ export class LoginService {
     headers = new HttpHeaders({
         'Content-Type': 'application/json'
     });
-    options = {
-        headers: this.headers
-     }
     constructor(private httpClient: HttpClient) { }
     
         

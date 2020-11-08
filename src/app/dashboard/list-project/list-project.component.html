@@ -31,15 +31,15 @@
               <a class="pointer" (click)="editProject(i)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
+              <a class="pointer"  style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
                 <md-tooltip md-direction="top">
                   <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
                 </md-tooltip>
               </a>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
+              <a class="pointer" (click)="makeADonation(i)" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
                 <mat-icon *ngIf="!isAdmin">monetization_on</mat-icon>
               </a>
-              <a class="pointer" routerLink="edit/{{ i }}" style="color:lightslategray" tooltip="{{'View' | translate}}">
+              <a class="pointer" style="color:lightslategray" tooltip="{{'View' | translate}}">
                 <mat-icon>visibility</mat-icon>
               </a>
             </td>

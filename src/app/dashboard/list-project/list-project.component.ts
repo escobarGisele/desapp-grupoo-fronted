@@ -6,6 +6,7 @@ import { ProjectService } from '../../services/project.service';
 
 import { TranslateService } from '@ngx-translate/core';
 import { CreateEditModalComponent } from './createEditProject/modal.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,10 +23,10 @@ export class ListProjectComponent implements OnInit {
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
-  isAdmin: boolean = true;
+  isAdmin: boolean = !sessionStorage.getItem('esDonante');
 
   constructor(public translate: TranslateService, private projectService: ProjectService, 
-    public dialog: MatDialog, public snackBar:MatSnackBar) 
+    public dialog: MatDialog, public snackBar:MatSnackBar,private router: Router) 
   {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
@@ -36,6 +37,10 @@ export class ListProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('Nombre') == null){
+      this.router.navigate(['/login']);
+      return;
+    }
     this.getProjects();
   }
   
@@ -62,7 +67,11 @@ export class ListProjectComponent implements OnInit {
       });
     // });
 
-    
+  }
+  makeADonation(idProject): void{
+    console.log("ijcioed.jcdjiof")
+    localStorage.setItem('idProject', idProject);
+    this.router.navigate(['/donation']);
   }
   
 }

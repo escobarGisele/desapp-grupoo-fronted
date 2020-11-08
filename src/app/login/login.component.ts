@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {LoginService} from '../services/login.service'
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,13 @@ import {LoginService} from '../services/login.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loading=true;
+  loading=false;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService,  public snackBar: MatSnackBar) { 
+  constructor(private fb: FormBuilder,
+              private loginService: LoginService,
+              public snackBar: MatSnackBar,
+              private router: Router) { 
     this.createForm();
   }
 
@@ -47,12 +51,12 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(user).subscribe(
       data => {
-        console.log(data);
+        sessionStorage.setItem('Nombre', 'Mar');
+        sessionStorage.setItem('esDonante', data);
+
+        this.router.navigate(['/dashboard']);
       },
       err => this.snackBar.open('Usuario y/o contraseña incorrectos', '', {
-        duration: 3000
-      }),
-      () => this.snackBar.open('Debe ingresar sus credenciales', '', {
         duration: 3000
       })
     )
