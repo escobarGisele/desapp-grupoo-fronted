@@ -26,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesComponent } from './dashboard/shared/messages/messages.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { ModalComponent } from './dashboard/list-project/modal/modal.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { ModalComponent } from './dashboard/list-project/modal/modal.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule,
@@ -60,7 +63,11 @@ import { ModalComponent } from './dashboard/list-project/modal/modal.component';
       }
     })
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+    ModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

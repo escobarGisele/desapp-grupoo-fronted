@@ -23,14 +23,14 @@
         </thead>
         <tbody *ngFor="let project of listProject; let i = index">
           <tr>
-           
             <td>{{project.name}}</td>
             <td>{{project.endDate}}</td>
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
+            <td>{{i}}</td>
             <td>
               
-              <a class="pointer" routerLink="edit/{{ i }}" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
+              <a class="pointer" (click)="editProject(i)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 
               <a class="pointer" routerLink="edit/{{ i }}" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
