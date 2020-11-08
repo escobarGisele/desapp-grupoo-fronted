@@ -27,7 +27,6 @@ export class CreateEditModalComponent implements OnInit {
                 private locationService: LocationService, 
                 private fb: FormBuilder,
                 private projectService: ProjectService, 
-                private aRoute: ActivatedRoute,
                 private snackBar:MatSnackBar,
                 @Inject(MAT_DIALOG_DATA) public data: any) 
   {
