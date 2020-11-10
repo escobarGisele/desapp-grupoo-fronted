@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,8 +23,11 @@ import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessagesComponent } from './dashboard/shared/messages/messages.component';;
-
+import { MessagesComponent } from './dashboard/shared/messages/messages.component';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { CreateEditModalComponent } from './dashboard/list-project/createEditProject/modal.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,28 +42,32 @@ import { MessagesComponent } from './dashboard/shared/messages/messages.componen
     UserComponent,
     DonationComponent,
     MessagesComponent,
+    CreateEditModalComponent,
     
-  
-  
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule,
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
     AngularMaterialModule,
-    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    }),
-    
-    BrowserAnimationsModule
+    })
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+    CreateEditModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
