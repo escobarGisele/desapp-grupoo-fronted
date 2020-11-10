@@ -24,7 +24,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Location</mat-label>
       <mat-select [(ngModel)]="location" formControlName="locationControl" [formGroup]="newProjectForm" required>
-        <mat-option *ngFor="let elem of locationList" [value]="elem.name">
+        <mat-option *ngFor="let elem of locationList" [value]="elem.id">
           {{elem.name + ' (' + elem.province +')'}}
         </mat-option>
       </mat-select>

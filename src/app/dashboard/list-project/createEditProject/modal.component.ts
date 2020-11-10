@@ -6,6 +6,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ListProjectComponent } from '../list-project.component';
+import { of } from 'rxjs/internal/observable/of';
 
 @Component({
   selector: 'app-modal',
@@ -16,13 +17,13 @@ export class CreateEditModalComponent implements OnInit {
   
   location:any; 
   loading = true;
-  serializedDate = new FormControl((new Date()).toISOString());
+  // serializedDate = new FormControl((new Date()).toISOString());
   action = 'Crear';
 
   newProjectForm:FormGroup;
   idProject:number;
-  locationList: any[]=[];
-
+  locationList: any []=[];
+  project: any;
   constructor(  public dialogRef: MatDialogRef<CreateEditModalComponent>,
                 private locationService: LocationService, 
                 private fb: FormBuilder,
@@ -32,30 +33,29 @@ export class CreateEditModalComponent implements OnInit {
   {
     this.createForm();
     if(data != null){
-      console.log(data.project)
+      this.project= data.project;
       this.idProject= data.idProject;
+      this.locationList.push(data.project.location);
+      this.location = "1";
     }
   }
   
   ngOnInit() {
     this.getListOfLocation();
-    this.location = this.locationList[0];
-    console.log(this.idProject)
     
-    // if (this.idProject !== undefined) {
-    //   this.action = 'Editar';
-    //   this.isEdit();
-    // }
+    if (this.idProject !== undefined) {
+      this.action = 'Editar';
+      this.isEdit();
+    }
   }
   isEdit() {
-    const project: any = this.projectService.getProjectById(this.idProject);
-    console.log(project);
+    this.location = this.project.location;
     this.newProjectForm.patchValue({
-      name: project.name,
-      factor: project.factor,
-      startDate: project.startDate,
-      endDate: project.endDate,
-      location: project.location
+      name: this.project.name,
+      factor: this.project.factor,
+      startDate:  new Date(this.project.startDate),
+      endDate: new Date(this.project.endDate),
+      locationControl: this.project.location
     });
   }
   onNoClick(): void {
@@ -84,7 +84,7 @@ export class CreateEditModalComponent implements OnInit {
       startDate: this.newProjectForm.get('startDate').value,
       endDate: this.newProjectForm.get('endDate').value,
       factor: this.newProjectForm.get('factor').value,
-      location: this.newProjectForm.get('locationControl').value,
+      locationControl: this.newProjectForm.get('locationControl').value,
     };
 
     if (this.idProject !== undefined) {

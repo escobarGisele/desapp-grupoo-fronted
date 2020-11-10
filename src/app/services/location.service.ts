@@ -16,7 +16,7 @@ export class LocationService {
 
   public getLocations() : Observable<any> {
 
-    const path = this.basePath + this.url ;
+    const path = this.basePath + this.url + '/locationWithOutProject' ;
     
 
      return this.httpClient.get(path);

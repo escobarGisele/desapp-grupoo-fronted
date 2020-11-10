@@ -61,15 +61,14 @@ export class ListProjectComponent implements OnInit {
   } 
 
   editProject(idProject): void{
-    // this.projectService.getProjectById(idProject).subscribe(data => {
+    this.projectService.getProjectById(idProject).subscribe(data => {
       this.dialog.open(CreateEditModalComponent, {
-        data: { idProject: idProject, project: "se deja asi hasta que se tenga en produccion el getBuyId de proyecto"}//data }
+        data: { idProject: idProject, project: data }
       });
-    // });
+    });
 
   }
   makeADonation(idProject): void{
-    console.log("ijcioed.jcdjiof")
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
   }
