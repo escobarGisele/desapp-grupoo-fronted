@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,9 +23,12 @@ import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessagesComponent } from './dashboard/shared/messages/messages.component';;
+import { MessagesComponent } from './dashboard/shared/messages/messages.component';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { CreateEditModalComponent } from './dashboard/list-project/createEditProject/modal.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-// Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -43,17 +46,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserComponent,
     DonationComponent,
     MessagesComponent,
-    
-  
-  
+    CreateEditModalComponent  
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule,
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
     AngularMaterialModule,
-    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,17 +65,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         deps: [HttpClient]
       }
     }),
-    
     BrowserAnimationsModule,
     NgbModule,
     FontAwesomeModule,
-    // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'dev-d8bhv2ic.us.auth0.com',
       clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
-    }),
+    })
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+    CreateEditModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

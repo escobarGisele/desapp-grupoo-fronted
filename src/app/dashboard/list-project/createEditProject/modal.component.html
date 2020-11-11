@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Crear Proyecto</h1>
+<div mat-dialog-content>
+  <!-- <p>Aca iria algo </p>
+   -->
+</div>
+
+<form [formGroup]="newProjectForm" novalidat autocomplete="off">
+  
+  <div class="form-group" >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput required minlength="4" id="name" name="name" formControlName="name">
+    </mat-form-field>
+    <div *ngIf="newProjectForm.get('name').hasError('required') && newProjectForm.get('name').touched" style="margin-top: -20px;">
+      <span class="mda-form-msg">Campo es requerido</span>
+    </div>
+
+    <div *ngIf="newProjectForm.get('name').hasError('minlength') && newProjectForm.get('name')" style="margin-top: -20px;">
+      <span class="mda-form-msg">Debe tener como minimo 4 caracteres</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Location</mat-label>
+      <mat-select [(ngModel)]="location" formControlName="locationControl" [formGroup]="newProjectForm" required>
+        <mat-option *ngFor="let elem of locationList" [value]="elem.id">
+          {{elem.name + ' (' + elem.province +')'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="newProjectForm.get('locationControl').hasError('required') && newProjectForm.get('locationControl').touched" style="margin-top: -20px;">
+      <span class="mda-form-msg">Campo es requerido</span>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Factor</mat-label>
+        <input type="number" matInput required min="0" max="99999" formControlName="factor">
+    </mat-form-field>
+    <div *ngIf="newProjectForm.get('factor').hasError('required') && newProjectForm.get('factor').touched" style="margin-top: -20px;">
+      <span class="mda-form-msg">Campo es requerido</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Start day</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>  
+    <div *ngIf="newProjectForm.get('startDate').hasError('required') && newProjectForm.get('startDate').touched" style="margin-top: -20px;">
+      <span class="mda-form-msg">Campo es requerido</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>End day</mat-label>
+      <input matInput [matDatepicker]="picker2" required formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="newProjectForm.get('endDate').hasError('required') && newProjectForm.get('endDate').touched" style="margin-top: -20px;">
+      <span class="mda-form-msg">Campo es requerido</span>
+    </div>
+  </div>
+
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="accent" cdkFocusInitial [disabled]="newProjectForm.invalid"
+  type="button" style="margin-left: 10px;" (click)="saveProject()">Ok</button>
+ </div>

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-
   protected basePath = 'https://whispering-spire-55253.herokuapp.com';
   //public defaultHeaders : Headers = new Headers();
  public url : string = '/home/projects';
@@ -39,8 +38,20 @@ export class ProjectService {
     const path = this.basePath + this.url+ '/nextToEnd' ;
     
 
-     return this.httpClient.get(path);
+    return this.httpClient.get(path);
 
+  }
+
+  public getProjectById(idProject: number): any {
+    const path = this.basePath + this.url+ `/${idProject}`;
+    
+    return this.httpClient.get(path);
+  }
+  editProject(project: any, idProject: any) {
+    throw new Error('Method not implemented.');
+  }
+  addProject(project: any) {
+    throw new Error('Method not implemented.');
   }
 
 }
