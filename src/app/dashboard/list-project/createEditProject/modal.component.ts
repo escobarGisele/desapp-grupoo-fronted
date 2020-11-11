@@ -16,8 +16,8 @@ import { of } from 'rxjs/internal/observable/of';
 export class CreateEditModalComponent implements OnInit {
   
   location:any; 
+  locationSelected: any;
   loading = true;
-  // serializedDate = new FormControl((new Date()).toISOString());
   action = 'Crear';
 
   newProjectForm:FormGroup;
@@ -35,13 +35,14 @@ export class CreateEditModalComponent implements OnInit {
     if(data != null){
       this.project= data.project;
       this.idProject= data.idProject;
-      this.locationList.push(data.project.location);
-      this.location = "1";
+      this.location = data.project.location;
+      this.locationSelected = this.location.id
     }
   }
-  
+
   ngOnInit() {
-    this.getListOfLocation();
+    var x = this.idProject != null? this.location : null;
+    this.getListOfLocation(x);
     
     if (this.idProject !== undefined) {
       this.action = 'Editar';
@@ -61,15 +62,19 @@ export class CreateEditModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  getListOfLocation(): void{
+  getListOfLocation(element? : any): void{
     this.locationService.getLocations().subscribe(data => {
+      console.log(element != null)
+      if(element != null){
+        data.unshift(element);
+      }
       this.locationList = data;
       this.loading = false;
     });
   }
 
   createForm() {
-    this.newProjectForm = this.fb.group({
+    this.newProjectForm = this.fb.group({//validaitors
       name: ['', [Validators.required, Validators.maxLength(20)]],
       startDate: ['',  [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -77,8 +82,17 @@ export class CreateEditModalComponent implements OnInit {
       locationControl: ['', [Validators.required]],
     });
   }
-
+  
   saveProject() {
+    if (this.newProjectForm.get('startDate').value > this.newProjectForm.get('endDate').value) {
+      this.snackBar.open('Fecha de inicio no puede ser mayor a fecha de fin', '', {
+        duration: 3000
+      });
+      this.newProjectForm.controls['startDate'].setErrors({'incorrect': true});
+      this.newProjectForm.controls['endDate'].setErrors({'incorrect': true});
+      return;
+      // return {[errorName]: true};
+    }
     const project: any = {
       name: this.newProjectForm.get('name').value,
       startDate: this.newProjectForm.get('startDate').value,
