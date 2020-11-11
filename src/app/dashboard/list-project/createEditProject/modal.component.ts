@@ -97,7 +97,7 @@ export class CreateEditModalComponent implements OnInit {
       name: this.newProjectForm.get('name').value,
       startDate: this.newProjectForm.get('startDate').value,
       endDate: this.newProjectForm.get('endDate').value,
-      // factor: this.newProjectForm.get('factor').value,
+      factor: this.newProjectForm.get('factor').value,
       locationId: this.newProjectForm.get('locationControl').value,
     };
 
@@ -105,7 +105,7 @@ export class CreateEditModalComponent implements OnInit {
   }
 
   createOrUpdateProject(project: any){
-    var message = project.id == 0 ? 'Proyecto creado con exito!' : 'Proyecto actualizado con exito!';
+    var message = project.id == null ? 'Proyecto creado con exito!' : 'Proyecto actualizado con exito!';
 
     this.projectService.createOrUpdateProject(project).subscribe(data => {
       console.log(data);

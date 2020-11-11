@@ -10,6 +10,10 @@ export class ProjectService {
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
+
+  options= {
+    options: this.headers
+  }
   
 
   constructor(private httpClient: HttpClient) { }
@@ -46,10 +50,10 @@ export class ProjectService {
     return this.httpClient.get(path);
   }
   createOrUpdateProject(project: any) : Observable<any> {
-    const path = this.basePath + '/login';
-        // return this.httpClient.post(path, project)
-        console.log(project)
-        return //this.httpClient.post(this.basePath, project)
+    console.log('asjackjamd')
+    const path = this.basePath + '/createOrUpdateProject';
+    console.log(project)
+    return this.httpClient.post(path, project)
   }
 
 }
