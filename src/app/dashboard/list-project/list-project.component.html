@@ -28,7 +28,7 @@
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
             <td>
-              <a class="pointer" (click)="editProject(project.id)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
+              <a class="pointer" ng-show="hoverEdit" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" (click)="editProject(project.id)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 
               <a class="pointer"  style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">

@@ -64,7 +64,6 @@ export class CreateEditModalComponent implements OnInit {
   }
   getListOfLocation(element? : any): void{
     this.locationService.getLocations().subscribe(data => {
-      console.log(element != null)
       if(element != null){
         data.unshift(element);
       }
@@ -74,7 +73,7 @@ export class CreateEditModalComponent implements OnInit {
   }
 
   createForm() {
-    this.newProjectForm = this.fb.group({//validaitors
+    this.newProjectForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20)]],
       startDate: ['',  [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -91,37 +90,30 @@ export class CreateEditModalComponent implements OnInit {
       this.newProjectForm.controls['startDate'].setErrors({'incorrect': true});
       this.newProjectForm.controls['endDate'].setErrors({'incorrect': true});
       return;
-      // return {[errorName]: true};
     }
+
     const project: any = {
+      projectId: this.idProject ?? 0,
       name: this.newProjectForm.get('name').value,
       startDate: this.newProjectForm.get('startDate').value,
       endDate: this.newProjectForm.get('endDate').value,
-      factor: this.newProjectForm.get('factor').value,
-      locationControl: this.newProjectForm.get('locationControl').value,
+      // factor: this.newProjectForm.get('factor').value,
+      locationId: this.newProjectForm.get('locationControl').value,
     };
 
-    if (this.idProject !== undefined) {
-      this.editProject(project);
-    } else {
-      this.addProject(project);
-    }
+    this.createOrUpdateProject(project);
   }
 
-  addProject(project: any) {
-    // this.projectService.addProject(project);
-    this.snackBar.open('Proyecto creado con exito!', '', {
-      duration: 3000
+  createOrUpdateProject(project: any){
+    var message = project.id == 0 ? 'Proyecto creado con exito!' : 'Proyecto actualizado con exito!';
+
+    this.projectService.createOrUpdateProject(project).subscribe(data => {
+      console.log(data);
+    });
+
+    this.snackBar.open(message, '', {
+      duration: 4500
     });
     this.dialogRef.close();
   }
-
-  editProject(project: any) {
-    // this.projectService.editProject(project, this.idProject);
-    this.snackBar.open('Proyecto actualizado con exito!', '', {
-      duration: 3000
-    });
-    this.dialogRef.close();
-  }
-
 }

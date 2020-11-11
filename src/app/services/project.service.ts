@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  protected basePath = 'https://whispering-spire-55253.herokuapp.com';
-  //public defaultHeaders : Headers = new Headers();
- public url : string = '/home/projects';
+  protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/projects';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -18,7 +16,7 @@ export class ProjectService {
 
   public getProjects() : Observable<any> {
 
-    const path = this.basePath + this.url ;
+    const path = this.basePath ;
     
 
      return this.httpClient.get(path);
@@ -26,7 +24,7 @@ export class ProjectService {
   }
   public getProjectsOpen() : Observable<any> {
 
-    const path = this.basePath + this.url+ '/open' ;
+    const path = this.basePath + '/open' ;
     
 
      return this.httpClient.get(path);
@@ -35,7 +33,7 @@ export class ProjectService {
   
   public getProjectsNextToEnd() : Observable<any> {
 
-    const path = this.basePath + this.url+ '/nextToEnd' ;
+    const path = this.basePath + '/nextToEnd' ;
     
 
     return this.httpClient.get(path);
@@ -43,15 +41,15 @@ export class ProjectService {
   }
 
   public getProjectById(idProject: number): any {
-    const path = this.basePath + this.url+ `/${idProject}`;
+    const path = this.basePath + `/${idProject}`;
     
     return this.httpClient.get(path);
   }
-  editProject(project: any, idProject: any) {
-    throw new Error('Method not implemented.');
-  }
-  addProject(project: any) {
-    throw new Error('Method not implemented.');
+  createOrUpdateProject(project: any) : Observable<any> {
+    const path = this.basePath + '/login';
+        // return this.httpClient.post(path, project)
+        console.log(project)
+        return //this.httpClient.post(this.basePath, project)
   }
 
 }
