@@ -30,6 +30,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TooltipModule } from 'ng2-tooltip-directive';
 
+import { AuthModule } from '@auth0/auth0-angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +47,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     UserComponent,
     DonationComponent,
     MessagesComponent,
-    CreateEditModalComponent,
-    
+    CreateEditModalComponent  
   ],
   imports: [
     HttpClientModule,
@@ -63,6 +66,13 @@ import { TooltipModule } from 'ng2-tooltip-directive';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
+    }),
+    BrowserAnimationsModule,
+    NgbModule,
+    FontAwesomeModule,
+    AuthModule.forRoot({
+      domain: 'dev-d8bhv2ic.us.auth0.com',
+      clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
     })
   ],
   providers: [

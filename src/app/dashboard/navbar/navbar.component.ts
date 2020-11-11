@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '@auth0/auth0-angular';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,14 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isCollapsed = true;
+  faUser = faUser;
+  faPowerOff = faPowerOff;
 
   constructor(
-    public translate: TranslateService
+    public translate: TranslateService,
+    public auth: AuthService,
+    @Inject(DOCUMENT) private doc: Document
   ) 
   {
     translate.addLangs(['en', 'es']);
@@ -20,6 +28,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  loginWithRedirect() {
+    this.auth.loginWithRedirect();
+  }
+
+  logout() {
+    this.auth.logout({ returnTo: this.doc.location.origin });
   }
 
 }
