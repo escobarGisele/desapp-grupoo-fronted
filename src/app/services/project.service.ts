@@ -10,7 +10,8 @@ export class ProjectService {
  public url : string = '/home/projects';
 
   headers = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
   });
   
 
@@ -19,9 +20,10 @@ export class ProjectService {
   public getProjects() : Observable<any> {
 
     const path = this.basePath + this.url ;
-    
 
-     return this.httpClient.get(path);
+     return this.httpClient.get(path, { 
+       headers: this.headers 
+      });
 
   }
   public getProjectsOpen() : Observable<any> {
