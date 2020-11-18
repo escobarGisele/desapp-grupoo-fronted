@@ -31,7 +31,9 @@ export class ProjectService {
     const path = this.basePath + this.url+ '/open' ;
     
 
-     return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
 
   }
   
@@ -40,15 +42,20 @@ export class ProjectService {
     const path = this.basePath + this.url+ '/nextToEnd' ;
     
 
-    return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
 
   }
 
   public getProjectById(idProject: number): any {
     const path = this.basePath + this.url+ `/${idProject}`;
     
-    return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
   }
+
   editProject(project: any, idProject: any) {
     throw new Error('Method not implemented.');
   }

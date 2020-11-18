@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 export class LoginService {
     protected basePath = 'https://whispering-spire-55253.herokuapp.com';
     headers = new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
     });
     constructor(private httpClient: HttpClient) { }
     
