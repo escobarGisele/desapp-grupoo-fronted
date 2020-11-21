@@ -8,7 +8,8 @@ export class ProjectService {
   protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/projects';
 
   headers = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
   });
 
   options= {
@@ -23,7 +24,9 @@ export class ProjectService {
     const path = this.basePath ;
     
 
-     return this.httpClient.get(path);
+     return this.httpClient.get(path, { 
+       headers: this.headers 
+      });
 
   }
   public getProjectsOpen() : Observable<any> {
@@ -31,7 +34,9 @@ export class ProjectService {
     const path = this.basePath + '/open' ;
     
 
-     return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
 
   }
   
@@ -40,14 +45,18 @@ export class ProjectService {
     const path = this.basePath + '/nextToEnd' ;
     
 
-    return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
 
   }
 
   public getProjectById(idProject: number): any {
     const path = this.basePath + `/${idProject}`;
     
-    return this.httpClient.get(path);
+    return this.httpClient.get(path, { 
+      headers: this.headers 
+     });
   }
   createOrUpdateProject(project: any) : Observable<any> {
     console.log('asjackjamd')

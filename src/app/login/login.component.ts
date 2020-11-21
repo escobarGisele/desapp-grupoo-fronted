@@ -51,10 +51,12 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(user).subscribe(
       data => {
+        console.log(data)
         sessionStorage.setItem('Nombre', 'Mar');
-        sessionStorage.setItem('esDonante', data);
+        sessionStorage.setItem('esDonante', data.userDonator);
 
         this.router.navigate(['/dashboard']);
+        localStorage.setItem('auth_token', data.token);
       },
       err => this.snackBar.open('Usuario y/o contraseña incorrectos', '', {
         duration: 3000

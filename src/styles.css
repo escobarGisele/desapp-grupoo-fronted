@@ -10,3 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-typography{
+  /* background: url(../../src/assets/img/img.jpg) no-repeat center center fixed; */
+  background: url(../src/assets/img/img.jpg) no-repeat center center fixed;
+}
