@@ -3,6 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {LoginService} from '../services/login.service'
 import {Router} from "@angular/router"
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { AuthService } from '@auth0/auth0-angular';
+
+const googleLogoURL = 
+"https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +23,13 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
               public snackBar: MatSnackBar,
-              private router: Router) { 
+              private router: Router, 
+              public auth: AuthService,
+              private matIconRegistry: MatIconRegistry,
+              private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      "logo",
+      this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
     this.createForm();
   }
 
@@ -62,5 +75,8 @@ export class LoginComponent implements OnInit {
         duration: 3000
       })
     )
+  }
+  loginWithRedirect() {
+    this.auth.loginWithRedirect();
   }
 }

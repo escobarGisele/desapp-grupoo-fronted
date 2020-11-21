@@ -5,30 +5,33 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  protected basePath = 'https://whispering-spire-55253.herokuapp.com';
-  //public defaultHeaders : Headers = new Headers();
- public url : string = '/home/projects';
+  protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/projects';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
   });
+
+  options= {
+    options: this.headers
+  }
   
 
   constructor(private httpClient: HttpClient) { }
 
   public getProjects() : Observable<any> {
 
-    const path = this.basePath + this.url ;
+    const path = this.basePath ;
+    
 
-     return this.httpClient.get(path, { 
-       headers: this.headers 
+    return this.httpClient.get(path, { 
+        headers: this.headers 
       });
 
   }
   public getProjectsOpen() : Observable<any> {
 
-    const path = this.basePath + this.url+ '/open' ;
+    const path = this.basePath + '/open' ;
     
 
     return this.httpClient.get(path, { 
@@ -39,28 +42,29 @@ export class ProjectService {
   
   public getProjectsNextToEnd() : Observable<any> {
 
-    const path = this.basePath + this.url+ '/nextToEnd' ;
+    const path = this.basePath + '/nextToEnd' ;
     
 
     return this.httpClient.get(path, { 
       headers: this.headers 
-     });
+    });
 
   }
 
   public getProjectById(idProject: number): any {
-    const path = this.basePath + this.url+ `/${idProject}`;
+    const path = this.basePath + `/${idProject}`;
     
     return this.httpClient.get(path, { 
       headers: this.headers 
-     });
+    });
   }
-
-  editProject(project: any, idProject: any) {
-    throw new Error('Method not implemented.');
-  }
-  addProject(project: any) {
-    throw new Error('Method not implemented.');
+  createOrUpdateProject(project: any) : Observable<any> {
+    const path = this.basePath + '/createOrUpdateProject';
+    console.log(project)
+    console.log(this.headers)
+    return this.httpClient.post(path, project, { 
+      headers: this.headers 
+    });
   }
 
 }

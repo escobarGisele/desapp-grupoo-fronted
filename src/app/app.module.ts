@@ -28,6 +28,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { CreateEditModalComponent } from './dashboard/list-project/createEditProject/modal.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 import { AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -57,6 +58,7 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    TooltipModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule,
