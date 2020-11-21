@@ -33,6 +33,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserComponent,
     DonationComponent,
     MessagesComponent,
-    CreateEditModalComponent  
+    CreateEditModalComponent,
+    ModalUserComponent  
   ],
   imports: [
     HttpClientModule,
