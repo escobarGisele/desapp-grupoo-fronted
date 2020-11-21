@@ -24,8 +24,8 @@ export class ProjectService {
     const path = this.basePath ;
     
 
-     return this.httpClient.get(path, { 
-       headers: this.headers 
+    return this.httpClient.get(path, { 
+        headers: this.headers 
       });
 
   }
@@ -47,7 +47,7 @@ export class ProjectService {
 
     return this.httpClient.get(path, { 
       headers: this.headers 
-     });
+    });
 
   }
 
@@ -56,13 +56,15 @@ export class ProjectService {
     
     return this.httpClient.get(path, { 
       headers: this.headers 
-     });
+    });
   }
   createOrUpdateProject(project: any) : Observable<any> {
-    console.log('asjackjamd')
     const path = this.basePath + '/createOrUpdateProject';
     console.log(project)
-    return this.httpClient.post(path, project)
+    console.log(this.headers)
+    return this.httpClient.post(path, project, { 
+      headers: this.headers 
+    });
   }
 
 }

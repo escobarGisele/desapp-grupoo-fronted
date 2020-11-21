@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ListProjectComponent } from '../list-project.component';
 import { of } from 'rxjs/internal/observable/of';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-modal',
@@ -95,8 +96,8 @@ export class CreateEditModalComponent implements OnInit {
     const project: any = {
       projectId: this.idProject ?? 0,
       name: this.newProjectForm.get('name').value,
-      startDate: this.newProjectForm.get('startDate').value,
-      endDate: this.newProjectForm.get('endDate').value,
+      startDate: formatDate(this.newProjectForm.get('startDate').value, 'yyyy-MM-dd', 'en-us'),
+      endDate: formatDate(this.newProjectForm.get('endDate').value, 'yyyy-MM-dd', 'en-us'),
       factor: this.newProjectForm.get('factor').value,
       locationId: this.newProjectForm.get('locationControl').value,
     };
