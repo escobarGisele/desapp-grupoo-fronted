@@ -23,7 +23,7 @@ export class ListProjectComponent implements OnInit {
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
-  isAdmin: boolean = true;//!sessionStorage.getItem('esDonante');
+  isAdmin: boolean = !sessionStorage.getItem('esDonante');
 
   constructor(public translate: TranslateService, private projectService: ProjectService, 
     public dialog: MatDialog, public snackBar:MatSnackBar,private router: Router) 
