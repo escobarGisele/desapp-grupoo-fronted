@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ModalUserComponent } from './modal-user/modal-user.component';
-
+import {DonationComponent} from '../donation/donation.component'
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',

@@ -1,39 +1,90 @@
 <app-loading *ngIf="loading"></app-loading>
-<!-- 
- <div class="container-fluid">
-    <div class="card-columns " >
-    
-        
-        <div class="card-body text-center" *ngFor="let user of listUsers; let i = index">
-        <div class="card bg-primary">
-            
-            <h5 class="card-title" >Bienvenido {{user.name}} </h5>
-              <ul class="list-group "  >
-                <li class="list-group-item ">User: {{ user.name }}</li>
-                <li class="list-group-item">Email: {{ user.mail }}</li>
-                <li class="list-group-item">Points: {{ user.points }}</li>
-            </ul>
-            <button class="btn  btn-dark btn-xl" routerLink="/dashboard">
-                Ver Proyectos
-            </button>
-            <br>
-            <br>
-            <button class="btn btn-dark  btn-xl" routerLink="/donation">
-                Donar
-            </button>
-            <hr style="height:2px;border-width:0;color:rgb(170, 41, 41);background-color:rgb(131, 37, 37)">
 
-            </div>
+  <h1>Bienvenido</h1>
+  <div class="col">
+  <div class="col-lg-6">
+    
+  <mat-card class="example-card"> 
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        
+      </div>
+      <mat-card-title>NOMBRE USUARIO </mat-card-title>
+      <mat-card-subtitle>NickNAme</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content *ngFor="let user of listUsers; let i = index">
+      <ul class="list-group "  >
+        <li class="list-group-item ">User: {{ user.name }}</li>
+        <li class="list-group-item">Email: {{ user.mail }}</li>
+        <li class="list-group-item">Points: {{ user.points }}</li>
+    </ul>
+    </mat-card-content>
+     <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+      <button mat-flat-button color="accent" (click)="createProject()">Editar Mis datos</button>
+    </mat-card-actions> 
+  </mat-card>
+</div>
+  </div>
+  <div class="col">
+<div class="col-lg-6">
+  <div class="row">
+    <div class="col-sm-12 col-xs-12">
+      
+      <div class="row">
+        <div class="col-sm-6 col-xs-6">
+          <h2>Lista de donaciones del usuario : </h2>
+        </div>
+        
+      </div>
+        
+      <table class="table table-bordered table-light">
+        <thead class="thead-dark" >
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">EndDate</th>
+            <th scope="col">StartDate</th>
+            <th scope="col">Location</th>
+            <th scope= "col"></th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr>
+            <!-- <td>{{project.name}}</td>
+            <td>{{project.endDate}}</td>
+            <td>{{project.startDate}}</td>
+            <td>{{project.location.name}}</td>
+            <td> -->
+              <!-- <a class="pointer" (click)="editProject(project.id)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
+                <mat-icon *ngIf="isAdmin" >edit</mat-icon>
+              </a> 
+              <a class="pointer"  style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
+                <md-tooltip md-direction="top">
+                  <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
+                </md-tooltip>
+              </a>
+              <a class="pointer" (click)="makeADonation(i)" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
+                <mat-icon *ngIf="!isAdmin">monetization_on</mat-icon>
+              </a>
+              <a class="pointer" style="color:lightslategray" tooltip="{{'View' | translate}}">
+                <mat-icon>visibility</mat-icon>
+              </a> -->
             
-          </div>
+
+          </tr>
           
-          
+        </tbody>
+      </table>
+      
+      
     </div>
     
+  </div>
 
-  </div> -->
-  <button class="btn btn-secondary btn-block btn-xl" routerLink="/dashboard">
-    VOLVER
+</div>
+  </div>
+<button class="btn btn-secondary btn-block btn-xl" routerLink="/dashboard">
+  VOLVER
 </button>
-<button mat-flat-button color="accent" (click)="createProject()">GenerarDonacion</button>
-      
