@@ -9,13 +9,15 @@ import { CreateEditModalComponent } from './createEditProject/modal.component';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 
+
+
 @Component({
   selector: 'app-list-project',
   templateUrl: './list-project.component.html',
   styleUrls: ['./list-project.component.css']
 })
 
-export class ListProjectComponent implements OnInit, AfterViewInit {
+export class ListProjectComponent implements OnInit {
   loading = true;
   listProject: any[]=[];
   listProjectNextToEnd:any[]=[];
@@ -27,30 +29,35 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [ 'name', 'startDate', 'endDate', 'location', 'action'];
   dataSource: MatTableDataSource<any>;
+  private paginator: MatPaginator;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
 
   constructor(public translate: TranslateService, private projectService: ProjectService, 
     public dialog: MatDialog, public snackBar:MatSnackBar,private router: Router) 
   {
-    this.getProjects();
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
-    this.dataSource = new MatTableDataSource(this.listProject);
   }
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
-  switchLang(lang: string) {
-    this.translate.use(lang);
-  }
-
 
   ngOnInit(): void {
+    this.getProjects();
+    this.dataSource = new MatTableDataSource(this.listProject);
+    // setTimeout(() => this.dataSource.paginator = this.paginator);
+    
     if(sessionStorage.getItem('Nombre') == null){
       this.router.navigate(['/login']);
       return;
     }
+  }
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+  }
+  switchLang(lang: string) {
+    this.translate.use(lang);
   }
   
   getProjects(): void {
