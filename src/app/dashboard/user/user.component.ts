@@ -4,14 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-<<<<<<< HEAD
 import { ModalUserComponent } from './modal-user/modal-user.component';
 import {DonationComponent} from '../donation/donation.component'
 import { TranslateService } from '@ngx-translate/core';
-=======
-// import { ModalUserComponent } from './modal-user/modal-user.component';
-
->>>>>>> main
+import { DonationService } from 'src/app/services/donation.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -20,15 +16,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class UserComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
-<<<<<<< HEAD
-  listUsers: any[]=[];
   user:any
+  listDonations: any[] = [];
+
   constructor(public translate: TranslateService,
               private userService: UserService,
-=======
-  user: any;
-  constructor(private userService: UserService,
->>>>>>> main
+              private donationService: DonationService,
               public dialog: MatDialog, 
               public snackBar:MatSnackBar,
               private router: Router) 
@@ -41,43 +34,25 @@ export class UserComponent implements OnInit {
               }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-   // this.getUsers();
-    this.getUsersById(1);
-    this.getRankingDonators();
-  }
-  getUsers(): void {
-    this.userService.getUsers().subscribe(data => {
-      this.listUsers = data;
-     console.log(data);
-      this.loading = false;
-    });
-  }
-  getUsersById(idUser:number) :void {
-    this.userService.getUsers().subscribe(data => {
-      console.log(data[0]);
-      this.user=idUser;
-      console.log(this.user)
-      this.loading = false;
-    });
-  }
-  getRankingDonators():void{
-    this.userService.getRankingDonators().subscribe(data => {
-      this.listUsers = data;
-      console.log(data)
-=======
-    this.getUser();
-  }
-  getUser(): void {
-    const userId = parseInt(sessionStorage.getItem('userId'));
-    console.log(userId)
-    this.userService.getUserById(userId).subscribe(data => {
-      this.user = data;
->>>>>>> main
-      this.loading = false;
-    });
+    this.getUsersById();
+    this.getDonationByUser();
   }
 
+  getUsersById() :void {
+    const idUser = parseInt(sessionStorage.getItem('userId'));
+    this.userService.getUserById(idUser).subscribe(data => {
+      this.user = data;
+      this.loading = false;
+    });
+  }
   
+  getDonationByUser() :void {
+    const idUser = parseInt(sessionStorage.getItem('userId'));
+    this.donationService.getDonationOfUser(idUser).subscribe(data => {
+      this.listDonations = data;
+      console.log(data)
+      this.loading = false;
+    });
+  }
 
 }
