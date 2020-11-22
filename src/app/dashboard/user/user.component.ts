@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { ModalUserComponent } from './modal-user/modal-user.component';
+// import { ModalUserComponent } from './modal-user/modal-user.component';
 
 @Component({
   selector: 'app-user',
@@ -14,25 +14,23 @@ import { ModalUserComponent } from './modal-user/modal-user.component';
 export class UserComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
-  listUsers: any[]=[];
+  user: any;
   constructor(private userService: UserService,
               public dialog: MatDialog, 
               public snackBar:MatSnackBar,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUser();
   }
-  getUsers(): void {
-    this.userService.getUsers().subscribe(data => {
-      this.listUsers = data;
-      console.log(data);
+  getUser(): void {
+    const userId = parseInt(sessionStorage.getItem('userId'));
+    console.log(userId)
+    this.userService.getUserById(userId).subscribe(data => {
+      this.user = data;
       this.loading = false;
     });
   }
-  createProject(){
-    const dialogRef = this.dialog.open(ModalUserComponent, {});    
-  } 
 
   
 

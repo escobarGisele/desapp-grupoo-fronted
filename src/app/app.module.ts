@@ -49,7 +49,7 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
     DonationComponent,
     MessagesComponent,
     CreateEditModalComponent,
-    ModalUserComponent  
+    ModalUserComponent,
   ],
   imports: [
     HttpClientModule,

@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  protected basePath = 'https://whispering-spire-55253.herokuapp.com';
-  public url : string = '/home/users';
+  protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/users';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
@@ -18,34 +17,34 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
   
     public getUsers() : Observable<any> {
-      const path = this.basePath + this.url ;
+      const path = this.basePath ;
       return this.httpClient.get(path, { 
-        headers: this.headers 
-       });
+          headers: this.headers 
+        });
 
     }
 
-    public getUsersId(id:number) : Observable<any> {
-      const path = this.basePath + this.url + '$/{id}';
+    public getUserById(id:number) : Observable<any> {
+      const path = this.basePath + `/${id}`;
       return this.httpClient.get(path, { 
-        headers: this.headers 
-       });
+          headers: this.headers 
+        });
 
     }
 
     public getUserPoints() : Observable<any> {
-      const path = this.basePath + this.url + '/points';
+      const path = this.basePath + '/points';
       return this.httpClient.get(path, { 
-        headers: this.headers 
-       });
+          headers: this.headers 
+        });
 
     }
     
     public getRankingDonators() : Observable<any> {
-      const path = this.basePath + this.url + '/rankingDonators';
+      const path = this.basePath + '/rankingDonators';
       return this.httpClient.get(path, { 
-        headers: this.headers 
-       });
+          headers: this.headers 
+        });
 
     }
     

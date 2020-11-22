@@ -1,17 +1,16 @@
 <app-loading *ngIf="loading"></app-loading>
-<!-- 
+ 
  <div class="container-fluid">
     <div class="card-columns " >
     
         
-        <div class="card-body text-center" *ngFor="let user of listUsers; let i = index">
+        <div class="card-body text-center" >
         <div class="card bg-primary">
-            
-            <h5 class="card-title" >Bienvenido {{user.name}} </h5>
+            <h5 class="card-title" >x </h5>
               <ul class="list-group "  >
-                <li class="list-group-item ">User: {{ user.name }}</li>
-                <li class="list-group-item">Email: {{ user.mail }}</li>
-                <li class="list-group-item">Points: {{ user.points }}</li>
+                <li class="list-group-item ">1</li>
+                <li class="list-group-item">2</li>
+                <li class="list-group-item">3</li>
             </ul>
             <button class="btn  btn-dark btn-xl" routerLink="/dashboard">
                 Ver Proyectos
@@ -31,9 +30,8 @@
     </div>
     
 
-  </div> -->
+  </div> 
   <button class="btn btn-secondary btn-block btn-xl" routerLink="/dashboard">
     VOLVER
 </button>
-<button mat-flat-button color="accent" (click)="createProject()">GenerarDonacion</button>
       

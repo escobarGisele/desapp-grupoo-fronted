@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data)
         sessionStorage.setItem('Nombre', 'Mar');
+        sessionStorage.setItem('userId', data.userId);
         sessionStorage.setItem('esDonante', data.userDonator);
 
         this.router.navigate(['/dashboard']);

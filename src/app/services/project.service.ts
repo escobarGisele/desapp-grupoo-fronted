@@ -58,11 +58,10 @@ export class ProjectService {
       headers: this.headers 
     });
   }
-  createOrUpdateProject(project: any) : Observable<any> {
+  createOrUpdateProject(body: any) : Observable<any> {
     const path = this.basePath + '/createOrUpdateProject';
-    console.log(project)
-    console.log(this.headers)
-    return this.httpClient.post(path, project, { 
+    console.log(body);
+    return this.httpClient.post(path, body, { 
       headers: this.headers 
     });
   }
