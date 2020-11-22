@@ -23,7 +23,7 @@
         </ul>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="accent">Editar Mis datos</button>
+        <button mat-flat-button color="accent" (click)="editUserModal()">Editar Mis datos</button>
       </mat-card-actions> 
     </mat-card>
   </div>
@@ -43,7 +43,6 @@
             <th scope="col">Recaudacion total</th>
             <th scope="col">Puntos</th>
             <th scope="col">Open</th>
-            <th scope= "col"></th>
           </tr>
         </thead>
         <tbody *ngFor="let donation of listDonations; let i = index">

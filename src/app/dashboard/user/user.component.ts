@@ -50,8 +50,13 @@ export class UserComponent implements OnInit {
     const idUser = parseInt(sessionStorage.getItem('userId'));
     this.donationService.getDonationOfUser(idUser).subscribe(data => {
       this.listDonations = data;
-      console.log(data)
       this.loading = false;
+    });
+  }
+
+  editUserModal(){
+    this.dialog.open(ModalUserComponent, {
+      data: { user: this.user }
     });
   }
 
