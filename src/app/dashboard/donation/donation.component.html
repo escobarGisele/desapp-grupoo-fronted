@@ -13,27 +13,17 @@
           
           <div class="col-sm-8">
             <h2>Create Donation</h2>
-            <form class="form-horizontal">
+            <form class="form-horizontal" [formGroup]="newDonationForm" novalidat autocomplete="off">
               <div class="form-group">
-                <label for="name" class="control-label col-sm-2">
-                  Project name
-                </label>
+                <mat-label>Project</mat-label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name"
-                    name="name" [(ngModel)]="model.name"
-                    placeholder="Enter name user" disabled
-                  >
+                  <input type="text" class="form-control" formControlName="projectName" disabled>
                 </div>
               </div>
               <div class="form-group">
-                <label for="name" class="control-label col-sm-2">
-                  Location
-                </label>
+                <mat-label>Location</mat-label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name"
-                    name="name" [(ngModel)]="model.name"
-                    placeholder="Enter name user" disabled
-                  >
+                  <input type="text" class="form-control" formControlName="locationName" disabled>
                 </div>
               </div>
               <div class="form-group">
@@ -41,37 +31,14 @@
                   invest
                 </label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name"
-                    name="invest" [(ngModel)]="model.invest"
-                    placeholder="Enter  an amount "
-                  >
+                  <input type="number" class="form-control" formControlName="invest" 
+                  ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required />
+                  <span class="help-block" ng-show="true">
+                      Invalid!
+                  </span>
+                  
                 </div>
               </div>
-              
-              <div class="form-group">
-                <label for="startDate" class="control-label col-sm-2">
-                  Project
-                </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name"
-                    name="project" [(ngModel)]="model.project"
-                    placeholder="Enter a project"
-                  >
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="location" class="control-label col-sm-2">
-                  Location
-                </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name"
-                    name="location" [(ngModel)]="model.location"
-                    placeholder="Enter a New location"
-                  >
-                </div>
-              </div>
-            
               <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                   <button type="submit" class="btn btn-danger" (click)="addDonation()">
@@ -93,25 +60,13 @@
                   <th scope="col">User Donator</th>
                   <th scope="col">Project name</th>
                   <th scope="col">Invest</th>
-                  <th scope= "col">Edit</th>
                 </tr>
               </thead>
               <tbody *ngFor="let donation of listDonations; let i = index">
                 <tr>
-                 
-                
                   <td>{{donation.user.name}}</td>
                   <td>{{donation.project.name}}</td>
                   <td>{{donation.investment}}</td>
-                  <td> 
-                    <a class="pointer" routerLink="edit/{{ i }}" style="color: #1878B0;">
-                      <mat-icon >edit</mat-icon>
-                    </a>
-                    <a (click)=deleteDonation(i)  class="pointer" style="color: #E15639;">
-                      <mat-icon>delete</mat-icon>
-                    </a>
-                  </td>
-      
                 </tr>
                 
               </tbody>

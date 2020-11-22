@@ -5,6 +5,8 @@ import { MessagesComponent } from '../shared/messages/messages.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProjectService } from 'src/app/services/project.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -20,41 +22,54 @@ export class DonationComponent implements OnInit {
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
-//
+  project: any;
+  newDonationForm:FormGroup;
 
   
-  constructor(private donationService:DonationService, public dialog: MatDialog, public snackBar:MatSnackBar) { }
+  constructor(private donationService:DonationService,
+              public dialog: MatDialog,
+              public snackBar:MatSnackBar,
+              private fb: FormBuilder,
+              private projectService: ProjectService) {
+    var idProject = parseInt(localStorage.getItem('idProject'));
+    this.projectService.getProjectById(idProject).subscribe(response => {
+      this.project = response
+      this.fillField();
+    });
+  }
 
   ngOnInit(): void {
     this.getDonations();
+    
+    this.createForm();
+    
   }
   getDonations(): void {
     this.donationService.getDonations().subscribe(data => {
       this.listDonations = data;
-      console.log(data);
       this.loading = false;
     });
   
   }
   addDonation():void{
     this.listDonations.push(this.model);
-    this.msg = 'campo agregado';
+    this.msg = 'campo agregado';    
+    localStorage.setItem('idProject','')
   }
-  deleteDonation( index :number ){
-    const dialogRef = this.dialog.open(MessagesComponent, {
-      width: '250px',
-      data: {message: 'Delete the donation?'}
+
+  createForm() {
+    this.newDonationForm = this.fb.group({
+      projectName: ['', [Validators.required]],
+      locationName: ['',  [Validators.required]],
+      invest: ['', [Validators.required]],
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result === 'accept'){
-        this.listDonations.splice(index,1);
-        this.snackBar.open('Donation successfully deleted', '', {duration: 30000})
-      }
-      
-    });    
   }
 
-
+  fillField(){
+    this.newDonationForm.patchValue({
+      projectName: this.project.name,
+      locationName: `${this.project.location.name} (${this.project.location.province})`
+    });
+  }
 }
 

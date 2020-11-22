@@ -28,18 +28,16 @@
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
             <td>
-              <a class="pointer" (click)="editProject(project.id)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
+              <a class="pointer" ng-show="hoverEdit"  (click)="editProject(project.id)" style="color: #3ea4df;  cursor: pointer;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 
-              <a class="pointer"  style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
-                <md-tooltip md-direction="top">
-                  <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
-                </md-tooltip>
+              <a class="pointer"  style="color:lightcoral; cursor: pointer;"  tooltip="{{'CloseProyect' | translate}}">
+                <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
               </a>
-              <a class="pointer" (click)="makeADonation(i)" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
+              <a class="pointer" (click)="makeADonation(project.id)" style="color:lightgreen;  cursor: pointer;" tooltip="{{'Donate' | translate}}">
                 <mat-icon *ngIf="!isAdmin">monetization_on</mat-icon>
               </a>
-              <a class="pointer" style="color:lightslategray" tooltip="{{'View' | translate}}">
+              <a class="pointer" style="color:lightslategray;  cursor: pointer;" tooltip="{{'View' | translate}}">
                 <mat-icon>visibility</mat-icon>
               </a>
             </td>
