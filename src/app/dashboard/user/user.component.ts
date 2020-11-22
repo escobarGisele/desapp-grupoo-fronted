@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ModalUserComponent } from './modal-user/modal-user.component';
 import {DonationComponent} from '../donation/donation.component'
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -16,10 +17,18 @@ export class UserComponent implements OnInit {
   loading = true;
   listUsers: any[]=[];
   user:any
-  constructor(private userService: UserService,
+  constructor(public translate: TranslateService,
+              private userService: UserService,
               public dialog: MatDialog, 
               public snackBar:MatSnackBar,
-              private router: Router) { }
+              private router: Router) 
+              {
+                translate.addLangs(['en', 'es']);
+                translate.setDefaultLang('es');
+              }
+              switchLang(lang: string) {
+                this.translate.use(lang);
+              }
 
   ngOnInit(): void {
    // this.getUsers();
