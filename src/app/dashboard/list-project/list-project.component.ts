@@ -19,6 +19,7 @@ export class ListProjectComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
   listProject: any[]=[];
+  listProjectNextToEnd:any[]=[];
   msg:string = '';
   model:any = {};
   model2:any = {};
@@ -48,6 +49,12 @@ export class ListProjectComponent implements OnInit {
     this.projectService.getProjects().subscribe(data => {
       this.listProject = data;
       this.dataSource = new MatTableDataSource(this.listProject);
+      this.loading = false;
+    });
+  }
+  getProjectsNextToEnd(): void {
+    this.projectService.getProjectsNextToEnd().subscribe(data => {
+      this.listProjectNextToEnd = data;
       this.loading = false;
     });
   }
