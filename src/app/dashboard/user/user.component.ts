@@ -4,8 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-// import { ModalUserComponent } from './modal-user/modal-user.component';
-
+import { ModalUserComponent } from './modal-user/modal-user.component';
+import {DonationComponent} from '../donation/donation.component'
+import { TranslateService } from '@ngx-translate/core';
+import { DonationService } from 'src/app/services/donation.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -14,24 +16,43 @@ import { UserService } from '../../services/user.service';
 export class UserComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
-  user: any;
-  constructor(private userService: UserService,
+  user:any
+  listDonations: any[] = [];
+
+  constructor(public translate: TranslateService,
+              private userService: UserService,
+              private donationService: DonationService,
               public dialog: MatDialog, 
               public snackBar:MatSnackBar,
-              private router: Router) { }
+              private router: Router) 
+              {
+                translate.addLangs(['en', 'es']);
+                translate.setDefaultLang('es');
+              }
+              switchLang(lang: string) {
+                this.translate.use(lang);
+              }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getUsersById();
+    this.getDonationByUser();
   }
-  getUser(): void {
-    const userId = parseInt(sessionStorage.getItem('userId'));
-    console.log(userId)
-    this.userService.getUserById(userId).subscribe(data => {
+
+  getUsersById() :void {
+    const idUser = parseInt(sessionStorage.getItem('userId'));
+    this.userService.getUserById(idUser).subscribe(data => {
       this.user = data;
       this.loading = false;
     });
   }
-
   
+  getDonationByUser() :void {
+    const idUser = parseInt(sessionStorage.getItem('userId'));
+    this.donationService.getDonationOfUser(idUser).subscribe(data => {
+      this.listDonations = data;
+      console.log(data)
+      this.loading = false;
+    });
+  }
 
 }
