@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { LocationService } from 'src/app/services/location.service';
-import { ProjectService } from 'src/app/services/project.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-modal-user',
@@ -16,34 +17,39 @@ export class ModalUserComponent implements OnInit {
   loading = true;
   action = 'Crear';
 
-  newProjectForm:FormGroup;
+  newUserForm:FormGroup;
   idProject:number;
-  locationList: any []=[];
-  project: any;
-  constructor( public dialogRef: MatDialogRef<ModalUserComponent>,
+  listUsers: any []=[];
+  user: any;
+  constructor( public translate: TranslateService,
+              public dialogRef: MatDialogRef<ModalUserComponent>,
               private locationService: LocationService, 
               private fb: FormBuilder,
-              private projectService: ProjectService, 
+              private userService: UserService, 
               private snackBar:MatSnackBar,
-              @Inject(MAT_DIALOG_DATA) public data: any) { 
+              @Inject(MAT_DIALOG_DATA) public data: any) 
+              { 
+                translate.addLangs(['en', 'es']);
+                translate.setDefaultLang('es');
                 this.createForm();
-    if(data != null){
-      this.project= data.project;
-      this.idProject= data.idProject;
-      this.locationList.push(data.project.location);
-      this.location = "1";
+    
     }
-              }
+    switchLang(lang: string) {
+      this.translate.use(lang);
+    }
+  
+              
 
   ngOnInit(): void {
   }
   createForm() {
-    this.newProjectForm = this.fb.group({
+    this.newUserForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20)]],
-      startDate: ['',  [Validators.required]],
-      endDate: ['', [Validators.required]],
-      factor: ['', [Validators.required]],
-      locationControl: ['', [Validators.required]],
+      mail: ['', [Validators.required]],
+      nickName: ['',  [Validators.required]],
+      password: ['', [Validators.required]],
+      
+      
     });
   }
   onNoClick(): void {

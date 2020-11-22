@@ -15,18 +15,36 @@ export class UserComponent implements OnInit {
   dataSource = new MatTableDataSource();
   loading = true;
   listUsers: any[]=[];
+  user:any
   constructor(private userService: UserService,
               public dialog: MatDialog, 
               public snackBar:MatSnackBar,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.getUsers();
+   // this.getUsers();
+    this.getUsersById(1);
+    this.getRankingDonators();
   }
   getUsers(): void {
     this.userService.getUsers().subscribe(data => {
       this.listUsers = data;
-      console.log(data);
+     console.log(data);
+      this.loading = false;
+    });
+  }
+  getUsersById(idUser:number) :void {
+    this.userService.getUsers().subscribe(data => {
+      console.log(data[0]);
+      this.user=idUser;
+      console.log(this.user)
+      this.loading = false;
+    });
+  }
+  getRankingDonators():void{
+    this.userService.getRankingDonators().subscribe(data => {
+      this.listUsers = data;
+      console.log(data)
       this.loading = false;
     });
   }
