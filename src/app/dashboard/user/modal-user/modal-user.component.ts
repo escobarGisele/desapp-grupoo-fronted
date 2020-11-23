@@ -63,14 +63,15 @@ export class ModalUserComponent implements OnInit {
     this.dialogRef.close();
   }
   saveData() {
+    var isDonator = sessionStorage.getItem('esDonante');
     const user: any = {
       id: parseInt(sessionStorage.getItem('userId')),
       name: this.userForm.get('name').value,
       mail: this.userForm.get('mail').value,
       nickName: this.userForm.get('nickName').value,
       password: this.userForm.get('password').value,
-      isUserDonator: sessionStorage.getItem('esDonante'),
-      avatar: this.userForm.get('avatar')
+      isUserDonator: isDonator,
+      avatar: this.userForm.get('avatar').value
     };
 
     this.userService.updateInfo(user).subscribe(data => {
