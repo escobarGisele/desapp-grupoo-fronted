@@ -10,9 +10,12 @@
           <button *ngIf="isAdmin" mat-flat-button color="accent" (click)="createProject(project)">+</button>
         </div>
       </div>
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Dos" #input>
+      
+      <mat-form-field appearance="outline">
+        <mat-label  style="color: whitesmoke;">Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input class="filterInput" style="color: whitesmoke;">
+        <mat-icon matSuffix  style="color: whitesmoke;">search</mat-icon>
+        
       </mat-form-field>
 
       <div class="mat-elevation-z8">
@@ -20,7 +23,7 @@
           
           <!-- ID Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-header-cell *matHeaderCellDef > Name </th>
             <td mat-cell *matCellDef="let projec"> {{projec.name}} </td>
           </ng-container>
       
