@@ -43,10 +43,6 @@ export class NavbarComponent implements OnInit {
     )
   }
 
-  async loginWithRedirect() {
-    this.auth.loginWithRedirect();
-  }
-
   logout() {
     localStorage.removeItem('auth_token');
     this.auth.logout({ returnTo: this.doc.location.origin });

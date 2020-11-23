@@ -6,9 +6,9 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 })
 export class AuthGuardService implements CanActivate {
   routeURL: string;
-  userLoggedIn = sessionStorage.getItem("esDonante") != null;
+  userLoggedIn = sessionStorage.getItem("userId") != null;
 
-  user = this.userLoggedIn ? {'name': sessionStorage.getItem('Nombre'), 'esDonante': sessionStorage.getItem('esDonante')} : null;
+  user = this.userLoggedIn ? {'name': sessionStorage.getItem('userId'), 'esDonante': sessionStorage.getItem('esDonante')} : null;
 
   constructor(private router: Router) {
     this.routeURL = this.router.url;

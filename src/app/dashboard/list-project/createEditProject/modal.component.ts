@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ListProjectComponent } from '../list-project.component';
 import { of } from 'rxjs/internal/observable/of';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-modal',
@@ -16,8 +17,8 @@ import { of } from 'rxjs/internal/observable/of';
 export class CreateEditModalComponent implements OnInit {
   
   location:any; 
+  locationSelected: any;
   loading = true;
-  // serializedDate = new FormControl((new Date()).toISOString());
   action = 'Crear';
 
   newProjectForm:FormGroup;
@@ -35,13 +36,14 @@ export class CreateEditModalComponent implements OnInit {
     if(data != null){
       this.project= data.project;
       this.idProject= data.idProject;
-      this.locationList.push(data.project.location);
-      this.location = "1";
+      this.location = data.project.location;
+      this.locationSelected = this.location.id
     }
   }
-  
+
   ngOnInit() {
-    this.getListOfLocation();
+    var x = this.idProject != null? this.location : null;
+    this.getListOfLocation(x);
     
     if (this.idProject !== undefined) {
       this.action = 'Editar';
@@ -61,8 +63,11 @@ export class CreateEditModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  getListOfLocation(): void{
+  getListOfLocation(element? : any): void{
     this.locationService.getLocations().subscribe(data => {
+      if(element != null){
+        data.unshift(element);
+      }
       this.locationList = data;
       this.loading = false;
     });
@@ -77,37 +82,39 @@ export class CreateEditModalComponent implements OnInit {
       locationControl: ['', [Validators.required]],
     });
   }
-
+  
   saveProject() {
+    if (this.newProjectForm.get('startDate').value > this.newProjectForm.get('endDate').value) {
+      this.snackBar.open('Fecha de inicio no puede ser mayor a fecha de fin', '', {
+        duration: 3000
+      });
+      this.newProjectForm.controls['startDate'].setErrors({'incorrect': true});
+      this.newProjectForm.controls['endDate'].setErrors({'incorrect': true});
+      return;
+    }
+
     const project: any = {
+      projectId: this.idProject ?? 0,
       name: this.newProjectForm.get('name').value,
-      startDate: this.newProjectForm.get('startDate').value,
-      endDate: this.newProjectForm.get('endDate').value,
+      startDate: formatDate(this.newProjectForm.get('startDate').value, 'yyyy-MM-dd', 'en-us'),
+      endDate: formatDate(this.newProjectForm.get('endDate').value, 'yyyy-MM-dd', 'en-us'),
       factor: this.newProjectForm.get('factor').value,
-      locationControl: this.newProjectForm.get('locationControl').value,
+      locationId: this.newProjectForm.get('locationControl').value,
     };
 
-    if (this.idProject !== undefined) {
-      this.editProject(project);
-    } else {
-      this.addProject(project);
-    }
+    this.createOrUpdateProject(project);
   }
 
-  addProject(project: any) {
-    // this.projectService.addProject(project);
-    this.snackBar.open('Proyecto creado con exito!', '', {
-      duration: 3000
+  createOrUpdateProject(project: any){
+    var message = project.id == null ? 'Proyecto creado con exito!' : 'Proyecto actualizado con exito!';
+
+    this.projectService.createOrUpdateProject(project).subscribe(data => {
+      console.log(data);
+    });
+
+    this.snackBar.open(message, '', {
+      duration: 4500
     });
     this.dialogRef.close();
   }
-
-  editProject(project: any) {
-    // this.projectService.editProject(project, this.idProject);
-    this.snackBar.open('Proyecto actualizado con exito!', '', {
-      duration: 3000
-    });
-    this.dialogRef.close();
-  }
-
 }

@@ -1,0 +1,54 @@
+
+<h1 mat-dialog-title>Mis Datos</h1>
+<div mat-dialog-content>
+  <!-- <p>Aca iria algo </p>
+   -->
+</div>
+
+<form [formGroup]="newUserForm">
+  <div class="form-group">
+      <mat-form-field>
+          <mat-label>{{'name' | translate}}</mat-label>
+          <input matInput required minlength="4"  formControlName="username">
+      </mat-form-field>
+       <div *ngIf="newUserForm.get('name').hasError('required') && newUserForm.get('name').touched" style="margin-top: -20px;">
+          
+      </div> 
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+        <mat-label>{{'mail' | translate}}</mat-label>
+        <input matInput required minlength="4"  formControlName="mail">
+    </mat-form-field>
+     <div *ngIf="newUserForm.get('mail').hasError('required') && newUserForm.get('mail').touched" style="margin-top: -20px;">
+        
+    </div> 
+    <div class="form-group">
+      <mat-form-field>
+          <mat-label>{{'nickName' | translate}}</mat-label>
+          <input matInput required minlength="4"  formControlName="nickName">
+      </mat-form-field>
+       <div *ngIf="newUserForm.get('nickName').hasError('required') && newUserForm.get('nickName').touched" style="margin-top: -20px;">
+          
+      </div> 
+  </div>
+  
+  <div class="form-group">
+    <mat-form-field>
+        <mat-label>{{'password' | translate}}</mat-label>
+        <input matInput required minlength="4"  formControlName="password">
+    </mat-form-field>
+     <div *ngIf="newUserForm.get('password').hasError('required') && newUserForm.get('password').touched" style="margin-top: -20px;">
+        
+    </div> 
+</div>
+</div>
+  
+</form>
+
+ 
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="accent" cdkFocusInitial [disabled]="newUserForm.invalid"
+  type="button" style="margin-left: 10px;" >Ok</button>
+ </div>

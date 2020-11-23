@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocationService {
-  protected basePath = 'https://whispering-spire-55253.herokuapp.com';
-  public url : string = '/home/locations';
+  protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/locations';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
@@ -17,7 +16,7 @@ export class LocationService {
 
   public getLocations() : Observable<any> {
 
-    const path = this.basePath + this.url + '/locationWithOutProject' ;
+    const path = this.basePath + '/locationWithOutProject' ;
     
 
     return this.httpClient.get(path, { 
@@ -29,7 +28,7 @@ export class LocationService {
   
   public getTop10WithMoreTimeWithoutDonations() : Observable<any> {
 
-    const path = this.basePath + this.url +'/Top10WithMoreTimeWithoutDonations' ;
+    const path = this.basePath + '/Top10WithMoreTimeWithoutDonations' ;
     
 
     return this.httpClient.get(path, { 
