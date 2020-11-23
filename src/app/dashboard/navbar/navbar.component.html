@@ -71,8 +71,6 @@
         <!-- Responsive login button: show if NOT authenticated -->
         <ul class="navbar-nav d-md-none" *ngIf="(auth.isAuthenticated$ | async) === false">
           <a class="nav-link" routerLink = '/login'>{{'Login' | translate }}</a>
-            Ingresar
-        </button>
         </ul>
         <!-- /Responsive login button -->
 
