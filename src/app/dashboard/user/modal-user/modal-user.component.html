@@ -17,10 +17,17 @@
   <div class="form-group">
     <mat-form-field>
         <mat-label>{{'nickName' | translate}}</mat-label>
-        <input matInput required formControlName="nickName" disabled>
+        <input matInput required formControlName="nickName">
     </mat-form-field>
   </div>
   
+  <div class="form-group">
+    <mat-form-field>
+        <mat-label>Avatar</mat-label>
+        <input matInput formControlName="avatar">
+    </mat-form-field>
+  </div>
+
   <div class="form-group">
     <mat-form-field>
         <mat-label>{{'password' | translate}}</mat-label>

@@ -49,7 +49,7 @@ export class UserService {
     }
 
     public updateInfo(user) : Observable<any>{
-      const path = this.basePath + '/createOrUpdateUser';
+      const path = this.basePath + '/update';
 
       return this.httpClient.post(path, user, { 
         headers: this.headers 

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,9 +42,10 @@ export class ModalUserComponent implements OnInit {
   createForm() {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
-      mail: ['',[Validators.required]],
-      nickName: ['',[Validators.required]],
-      password: ['',[Validators.required]]
+      mail: new FormControl({ value: '', disabled: true }),
+      nickName: new FormControl({ value: '', disabled: true }),
+      password: ['',[Validators.required]],
+      avatar: ['']
     });
   }
 
@@ -53,7 +54,8 @@ export class ModalUserComponent implements OnInit {
       name: this.user.name,
       mail: this.user.mail,
       nickName: this.user.nickName,
-      password: this.user.password
+      password: this.user.password,
+      avatar: this.user.avatar
     });
   }
 
@@ -66,12 +68,14 @@ export class ModalUserComponent implements OnInit {
       name: this.userForm.get('name').value,
       mail: this.userForm.get('mail').value,
       nickName: this.userForm.get('nickName').value,
-      password: this.userForm.get('password').value
+      password: this.userForm.get('password').value,
+      isUserDonator: sessionStorage.getItem('esDonante'),
+      avatar: this.userForm.get('avatar')
     };
 
-    // this.userService.updateInfo(user).subscribe(data => {
-    //     console.log(data);
-    //   });
+    this.userService.updateInfo(user).subscribe(data => {
+        console.log(data);
+      });
     
 
     // this.projectService.addProject(project);
