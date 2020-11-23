@@ -47,7 +47,7 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('Nombre') == null){
+    if(localStorage.getItem('auth_token') == null){
       this.router.navigate(['/login']);
       return;
     }

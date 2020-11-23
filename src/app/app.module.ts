@@ -74,7 +74,9 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
     FontAwesomeModule,
     AuthModule.forRoot({
       domain: 'dev-d8bhv2ic.us.auth0.com',
-      clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
+      clientId: 'LyUdb2oSBSB1gmQaQ2L6gH28POb9vPqF'
+      //domain: 'dev-d8bhv2ic.us.auth0.com',
+      //clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
     })
   ],
   providers: [

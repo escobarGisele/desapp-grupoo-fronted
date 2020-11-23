@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       })
     )
   }
-  loginWithRedirect() {
+  async loginWithRedirect() {
     this.auth.loginWithRedirect();
   }
 }
