@@ -30,7 +30,7 @@
         <ul class="navbar-nav d-none d-md-block">
           <!-- Login button: show if NOT authenticated -->
           <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) === false">
-            <a id="qsLoginBtn" class="nav-link" (click)="loginWithRedirect()" routerLink = '/login'>{{'Login' | translate }}</a>
+            <a id="qsLoginBtn" class="nav-link" (click)="loginWithRedirect()" routerLink ='/dashboard'>{{'Login' | translate }}</a>
           </li>
           <!-- / Login button -->
           <!-- Fullsize dropdown: show if authenticated -->

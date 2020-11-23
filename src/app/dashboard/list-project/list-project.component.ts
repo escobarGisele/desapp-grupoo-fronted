@@ -7,6 +7,7 @@ import { ProjectService } from '../../services/project.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CreateEditModalComponent } from './createEditProject/modal.component';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ListProjectComponent implements OnInit {
   isAdmin: boolean = !sessionStorage.getItem('esDonante');
 
   constructor(public translate: TranslateService, private projectService: ProjectService, 
-    public dialog: MatDialog, public snackBar:MatSnackBar,private router: Router) 
+    public dialog: MatDialog, public snackBar:MatSnackBar,private router: Router, public auth: AuthService) 
   {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
@@ -37,7 +38,7 @@ export class ListProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('Nombre') == null){
+    if(localStorage.getItem('auth_token') == null){
       this.router.navigate(['/login']);
       return;
     }
