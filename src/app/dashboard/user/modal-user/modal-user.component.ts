@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,17 +13,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ModalUserComponent implements OnInit {
   
-  location:any; 
-  loading = true;
-  action = 'Crear';
-
-  newUserForm:FormGroup;
-  idProject:number;
-  listUsers: any []=[];
   user: any;
+  userForm : FormGroup;
+
   constructor( public translate: TranslateService,
               public dialogRef: MatDialogRef<ModalUserComponent>,
-              private locationService: LocationService, 
               private fb: FormBuilder,
               private userService: UserService, 
               private snackBar:MatSnackBar,
@@ -31,6 +25,7 @@ export class ModalUserComponent implements OnInit {
               { 
                 translate.addLangs(['en', 'es']);
                 translate.setDefaultLang('es');
+                this.user= data.user;
                 this.createForm();
     
     }
@@ -41,23 +36,51 @@ export class ModalUserComponent implements OnInit {
               
 
   ngOnInit(): void {
+    this.loadInformation()
   }
+
   createForm() {
-    this.newUserForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(20)]],
-      mail: ['', [Validators.required]],
-      nickName: ['',  [Validators.required]],
-      password: ['', [Validators.required]],
-      
-      
+    this.userForm = this.fb.group({
+      name: ['', [Validators.required]],
+      mail: new FormControl({ value: '', disabled: true }),
+      nickName: new FormControl({ value: '', disabled: true }),
+      password: ['',[Validators.required]],
+      avatar: ['']
     });
   }
+
+  loadInformation(){
+    this.userForm.patchValue({
+      name: this.user.name,
+      mail: this.user.mail,
+      nickName: this.user.nickName,
+      password: this.user.password,
+      avatar: this.user.avatar
+    });
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
-  addProject(project: any) {
+  saveData() {
+    var isDonator = sessionStorage.getItem('esDonante');
+    const user: any = {
+      id: parseInt(sessionStorage.getItem('userId')),
+      name: this.userForm.get('name').value,
+      mail: this.userForm.get('mail').value,
+      nickName: this.userForm.get('nickName').value,
+      password: this.userForm.get('password').value,
+      isUserDonator: isDonator,
+      avatar: this.userForm.get('avatar').value
+    };
+
+    this.userService.updateInfo(user).subscribe(data => {
+        console.log(data);
+      });
+    
+
     // this.projectService.addProject(project);
-    this.snackBar.open('Proyecto creado con exito!', '', {
+    this.snackBar.open('Info actualizada con exito!', '', {
       duration: 3000
     });
     this.dialogRef.close();

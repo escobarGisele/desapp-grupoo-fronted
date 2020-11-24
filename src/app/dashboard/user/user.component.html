@@ -10,11 +10,12 @@
   <div class="col-sm-10">
     <mat-card class="example-card"> 
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image">
+          <img mat-card-avatar *ngIf="user.avatar" src="{{user.avatar}}">
+        </div>
         <mat-card-title> {{user.name}} </mat-card-title>
         <mat-card-subtitle>{{user.nickName}}</mat-card-subtitle>
       </mat-card-header>
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
       <mat-card-content>
         <ul class="list-group ">
           <li class="list-group-item ">{{'User'|translate}}: {{user.nickName}}</li>
@@ -23,7 +24,7 @@
         </ul>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="accent">{{'EditData'|translate}}</button>
+        <button mat-flat-button color="accent" (click)="editUserModal()">{{'EditData'|translate}}</button>
       </mat-card-actions> 
     </mat-card>
   </div>
@@ -53,7 +54,6 @@
             <td>{{donation.investment}}</td>
             <td>{{donation.date}}</td>
             <td>{{donation.project.amountCollected}}</td>
-            <td>Falta sacar?</td>
             <td>{{donation.project.closed}}</td>
           </tr>
           
