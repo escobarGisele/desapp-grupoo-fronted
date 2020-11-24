@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjectService } from 'src/app/services/project.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -30,13 +31,20 @@ export class DonationComponent implements OnInit {
               public dialog: MatDialog,
               public snackBar:MatSnackBar,
               private fb: FormBuilder,
-              private projectService: ProjectService) {
+              private projectService: ProjectService,
+              public translate: TranslateService) {
+                translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
     var idProject = parseInt(localStorage.getItem('idProject'));
     this.projectService.getProjectById(idProject).subscribe(response => {
       this.project = response
       this.fillField();
     });
   }
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
 
   ngOnInit(): void {
     this.getDonations();

@@ -5,7 +5,7 @@
   </div>
   <div class="col-sm-4 col-xs-12">
   <div class="row">
-    <h1>Perfil</h1>
+    <h1>{{'Profile'|translate}}</h1>
   </div>
   <div class="col-sm-10">
     <mat-card class="example-card"> 
@@ -18,13 +18,13 @@
       </mat-card-header>
       <mat-card-content>
         <ul class="list-group ">
-          <li class="list-group-item ">User: {{user.nickName}}</li>
+          <li class="list-group-item ">{{'User'|translate}}: {{user.nickName}}</li>
           <li class="list-group-item">Email: {{user.mail}}</li>
-          <li class="list-group-item">Points: {{user.points}}</li>
+          <li class="list-group-item">{{'Points'|translate}}: {{user.points}}</li>
         </ul>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="accent" (click)="editUserModal()">Editar Mis datos</button>
+        <button mat-flat-button color="accent" (click)="editUserModal()">{{'EditData'|translate}}</button>
       </mat-card-actions> 
     </mat-card>
   </div>
@@ -32,18 +32,19 @@
     
   <div class="col-sm-6 col-xs-12">
         <div class="col-sm-6 col-xs-6">
-          <h1>Donations: </h1>
+          <h1>{{'Donations'|translate}} </h1>
         </div>
       <table class="table table-bordered table-light">
         <thead class="thead-dark" >
           <tr>
-            <th scope="col">Project name</th>
-            <th scope="col">Location</th>
-            <th scope="col">Donation</th>
-            <th scope="col">Date</th>
-            <th scope="col">Recaudacion total</th>
-            <th scope="col">Puntos</th>
-            <th scope="col">Open</th>
+            <th scope="col">{{'ProjectName'|translate}}</th>
+            <th scope="col">{{'Location'|translate}}</th>
+            <th scope="col">{{'Donation'|translate}}</th>
+            <th scope="col">{{'Date'|translate}}</th>
+            <th scope="col">{{'TotalCollection'|translate}}</th>
+            <th scope="col">{{'Points'|translate}}</th>
+            <th scope="col">{{'Open'|translate}}</th>
+            <th scope= "col"></th>
           </tr>
         </thead>
         <tbody *ngFor="let donation of listDonations; let i = index">
@@ -53,7 +54,6 @@
             <td>{{donation.investment}}</td>
             <td>{{donation.date}}</td>
             <td>{{donation.project.amountCollected}}</td>
-            <td>Falta sacar?</td>
             <td>{{donation.project.closed}}</td>
           </tr>
           

@@ -6,7 +6,8 @@
     "Email": "Email address",
     "Password": "Password",
     "Submit": "Submit",
-    "ProjectList": "Project list",
+    "OpenProjects": "Open projects",
+    "ClosedProjects": "Closed projects",
     "RememberPassword": "Remember password",
     "LastName": "Last name",
     "ConfirmPassword":"Confirm password",
@@ -30,6 +31,21 @@
     "NewProject": "New project",
     "CloseProyect":"Close project",
     "View": "View",
-    "Donate": "Donate"
-
+    "Donate": "Donate",
+    "Search": "Search",
+    "Home":"Home",
+    "CreateDonation": "Create Donation",
+    "Invest":"Invest",
+    "Project":"Project",
+    "Donations":"Donations",
+    "UserDonator": "User Donator",
+    "ProjectName":"Project Name",
+    "Profile":"Profile",
+    "User":"User",
+    "Points":"Points",
+    "EditData":"Edit Data",
+    "Donation":"Donation",
+    "Date":"Date",
+    "TotalCollection":"Total Collection",
+    "Open":"Open "
 }
