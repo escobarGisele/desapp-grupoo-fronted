@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
     this.auth.user$.subscribe(data =>{
       this.loginService.loginWithGoogle(data).subscribe(res => {
         console.log(res)
+        sessionStorage.setItem('userId', res.userId);
+        sessionStorage.setItem('esDonante', res.userDonator);
+
+        this.router.navigate(['/dashboard']);
+        localStorage.setItem('auth_token', res.token);
       })
     })
   }

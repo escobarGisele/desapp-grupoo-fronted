@@ -60,7 +60,17 @@ export class DonationComponent implements OnInit {
   
   }
   addDonation():void{
-    this.listDonations.push(this.model);
+    var donation = {
+      projectId: this.project.id,
+      userId: parseInt(sessionStorage.getItem('userId')),
+      investment: this.newDonationForm.get('invest').value
+    }
+    this.donationService.createDonation(donation).subscribe(data => {
+      console.log(data);
+      this.listDonations.push(data);
+    });
+    
+
     this.msg = 'campo agregado';    
     localStorage.setItem('idProject','')
   }

@@ -44,4 +44,12 @@ export class DonationService {
       });
   }
 
+  public createDonation(donation: any) : Observable<any>{
+    const path = this.basePath + '/create'
+
+    return this.httpClient.post(path, donation, { 
+      headers: this.headers 
+    });
+  }
+
 }
