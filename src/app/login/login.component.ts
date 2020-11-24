@@ -6,6 +6,7 @@ import {Router} from "@angular/router"
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { AuthService } from '@auth0/auth0-angular';
+import { faMap } from '@fortawesome/free-solid-svg-icons';
 
 const googleLogoURL = 
 "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
@@ -34,6 +35,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.user$.subscribe(data =>{
+      this.loginService.loginWithGoogle(data).subscribe(res => {
+        console.log(res)
+      })
+    })
   }
 
   createForm(): void{
