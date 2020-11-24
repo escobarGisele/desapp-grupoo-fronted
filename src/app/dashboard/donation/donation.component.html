@@ -12,23 +12,23 @@
         <div class="row">
           
           <div class="col-sm-8">
-            <h2>Create Donation</h2>
+            <h2>{{'CreateDonation'|translate}}</h2>
             <form class="form-horizontal" [formGroup]="newDonationForm" novalidat autocomplete="off">
               <div class="form-group">
-                <mat-label>Project</mat-label>
+                <mat-label>{{'Project'|translate}}</mat-label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" formControlName="projectName" disabled>
                 </div>
               </div>
               <div class="form-group">
-                <mat-label>Location</mat-label>
+                <mat-label>{{'Location'|translate}}</mat-label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" formControlName="locationName" disabled>
                 </div>
               </div>
               <div class="form-group">
                 <label for="endDate" class="control-label col-sm-2">
-                  invest
+                  {{'Invest'|translate}}
                 </label>
                 <div class="col-sm-10">
                   <input type="number" class="form-control" formControlName="invest" 
@@ -42,7 +42,7 @@
               <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
                   <button type="submit" class="btn btn-danger" (click)="addDonation()">
-                    Save
+                    {{'Save'|translate}}
                   </button>
                   <br>
                 </div>
@@ -52,14 +52,14 @@
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <h2>List Donations </h2>
+            <h2> {{'Donations'|translate}} </h2>
             <table class="table table-bordered table-light">
               <thead class="thead-dark" >
                 <tr>
                   
-                  <th scope="col">User Donator</th>
-                  <th scope="col">Project name</th>
-                  <th scope="col">Invest</th>
+                  <th scope="col">{{'UserDonator'|translate}}</th>
+                  <th scope="col">{{'ProjectName'|translate}}</th>
+                  <th scope="col"> {{'Invest'|translate}}</th>
                 </tr>
               </thead>
               <tbody *ngFor="let donation of listDonations; let i = index">
