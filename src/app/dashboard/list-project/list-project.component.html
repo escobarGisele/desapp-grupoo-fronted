@@ -97,13 +97,19 @@
             <th scope= "col"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let project of listProjectNextToEnd; let i = index">
+        <tbody *ngFor="let project of listProject; let i = index">
           <tr>
             <td>{{project.name}}</td>
             <td>{{project.endDate}}</td>
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
             <td>
+              <a class="pointer" (click)="deleteProject(i)" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
+                <md-tooltip md-direction="top">
+                  <mat-icon >delete</mat-icon>
+                </md-tooltip>
+              </a>
+              
               <a class="pointer" (click)="editProject(project.id)" style="color: #3ea4df;" tooltip="{{'Edit' | translate}}">
                 <mat-icon *ngIf="isAdmin" >edit</mat-icon>
               </a> 
@@ -112,6 +118,7 @@
                   <mat-icon *ngIf="isAdmin">edit_attributes</mat-icon>
                 </md-tooltip>
               </a>
+              
               <a class="pointer" (click)="makeADonation(i)" style="color:lightgreen" tooltip="{{'Donate' | translate}}">
                 <mat-icon *ngIf="!isAdmin">monetization_on</mat-icon>
               </a>

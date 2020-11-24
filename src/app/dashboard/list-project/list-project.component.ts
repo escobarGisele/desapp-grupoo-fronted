@@ -51,6 +51,7 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/login']);
       return;
     }
+    this.getProjects();
   }
   
   getProjects(): void {
@@ -58,6 +59,7 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
       this.listProject = data;
       this.dataSource = new MatTableDataSource(this.listProject);
       this.loading = false;
+      console.log(data)
     });
   }
   getProjectsNextToEnd(): void {
@@ -66,6 +68,16 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
       this.loading = false;
     });
   }
+  deleteProject(i:number){
+    this.projectService.getProjects().subscribe(data => {
+      this.listProject= data;
+      data.splice(i,1);
+      console.log(data)
+      this.loading = false;
+    });
+    
+
+  };
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -81,18 +93,46 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CreateEditModalComponent, {});    
   } 
 
-  editProject(idProject): void{
-    this.projectService.getProjectById(idProject).subscribe(data => {
-      this.dialog.open(CreateEditModalComponent, {
-        data: { idProject: idProject, project: data }
-      });
-    });
+  // editProject(idProject): void{
+  //   this.projectService.getProjectById(idProject).subscribe(data => {
+  //     this.dialog.open(CreateEditModalComponent, {
+  //       data: { idProject: idProject, project: data }
+  //     });
+  //   });
 
-  }
+  //}
   makeADonation(idProject): void{
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
   }
-  
+  /*
+   //variable para la carga de un proyecto
+  project = '';
+  //list iria con la clase nuestra 
+  listProject: any[]=[];
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  //metodo para imprimir el proyecto
+  addProject(){
+
+    const project={
+        name: this.project,
+        finishProject:false
+
+    };
+    console.log(this.listProject);
+    this.listProject.push(project);
+    this.project='';
+  };
+  //aca pongo index:num , pero en el proyecto nuestro cada proyecto ya trae un id q lo identifica
+  deleteProject( index :number ){
+    this.listProject.splice(index,1);
+
+  };
+  updateProyect(project,index){
+    this.listProject[index].finishProject =!project.finishProject;
+  }*/ 
 }
 
