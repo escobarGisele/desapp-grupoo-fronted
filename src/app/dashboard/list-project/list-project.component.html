@@ -102,7 +102,7 @@
             <td>{{project.startDate}}</td>
             <td>{{project.location.name}}</td>
             <td>
-              <a class="pointer" (click)="deleteProject(i)" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
+              <a class="pointer" *ngIf="isAdmin" (click)="deleteProject(i)" style="color:lightcoral"  tooltip="{{'CloseProyect' | translate}}">
                 <md-tooltip md-direction="top">
                   <mat-icon >delete</mat-icon>
                 </md-tooltip>

@@ -42,8 +42,6 @@ export class UserComponent implements OnInit {
     const idUser = parseInt(sessionStorage.getItem('userId'));
     this.userService.getUserById(idUser).subscribe(data => {
       this.user = data;
-      this.user.avatar = "https://media.gettyimages.com/photos/two-kittens-in-a-domestic-environment-picture-id955480082?s=612x612"
-
       this.loading = false;
     });
   }
