@@ -25,7 +25,7 @@ export class ListProjectComponent implements OnInit {
   model:any = {};
   model2:any = {};
   hideUpdate:boolean = true;
-  isAdmin: boolean = !sessionStorage.getItem('esDonante');
+  isAdmin: boolean = !(/true/i).test(sessionStorage.getItem('esDonante'));
 
   displayedColumns: string[] = [ 'name', 'startDate', 'endDate', 'location', 'action'];
   dataSource: MatTableDataSource<any>;
@@ -100,14 +100,14 @@ export class ListProjectComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateEditModalComponent, {});    
   } 
 
-  // editProject(idProject): void{
-  //   this.projectService.getProjectById(idProject).subscribe(data => {
-  //     this.dialog.open(CreateEditModalComponent, {
-  //       data: { idProject: idProject, project: data }
-  //     });
-  //   });
+  editProject(idProject): void{
+    this.projectService.getProjectById(idProject).subscribe(data => {
+      this.dialog.open(CreateEditModalComponent, {
+        data: { idProject: idProject, project: data }
+      });
+    });
 
-  //}
+  }
   makeADonation(idProject): void{
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
