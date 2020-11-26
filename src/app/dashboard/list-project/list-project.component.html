@@ -57,6 +57,9 @@
               <a class="pointer" style="color:lightslategray;  cursor: pointer;" tooltip="{{'View' | translate}}">
                 <mat-icon>visibility</mat-icon>
               </a>
+              <a class="pointer" (click)="deleteProject()" style="color:lightcoral;  cursor: pointer;" tooltip="{{'delete' | translate}}">
+                <mat-icon *ngIf="isAdmin" >delete</mat-icon>
+              </a>
             </td>
           </ng-container>
       

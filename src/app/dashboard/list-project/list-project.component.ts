@@ -93,6 +93,8 @@ export class ListProjectComponent implements OnInit, AfterViewInit {
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
   }
-  
+  deleteProject(){
+    this.listProject.splice(0,1);
+  }
 }
 
