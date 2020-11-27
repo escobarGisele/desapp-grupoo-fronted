@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, Pipe, PipeTransform } from '@angular/core';
+import { NgModule, Pipe, PipeTransform } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
@@ -17,7 +17,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from './dashboard/shared/angular-material/angular-material.module';
 import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
