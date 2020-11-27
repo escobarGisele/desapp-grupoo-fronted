@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, Pipe, PipeTransform } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
@@ -13,18 +13,17 @@ import { LoginComponent } from './login/login.component';
 
 import { ResgisterComponent } from './resgister/resgister.component';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { AngularMaterialModule } from './dashboard/shared/angular-material/angular-material.module';
 import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { DonationComponent } from './dashboard/donation/donation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesComponent } from './dashboard/shared/messages/messages.component';
-import { MatButton, MatButtonModule } from '@angular/material/button';
 import { CreateEditModalComponent } from './dashboard/list-project/createEditProject/modal.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -34,6 +33,27 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.component';
+
+@Pipe({
+  name: 'amountConverter'
+})
+
+export class AmountConverterPipe implements PipeTransform {
+
+  constructor(private translate: TranslateService){}
+
+  transform(value: number | string, locale?: string): string {
+    console.log(locale);
+    return new Intl.NumberFormat(locale, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      style: "currency",
+      currency: "ARS",
+      currencyDisplay: "code"
+    }).format(Number(value));
+  }
+
+}
 
 @NgModule({
   declarations: [
@@ -50,6 +70,7 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
     MessagesComponent,
     CreateEditModalComponent,
     ModalUserComponent,
+    AmountConverterPipe
   ],
   imports: [
     HttpClientModule,
@@ -75,9 +96,7 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
     AuthModule.forRoot({
       domain: 'dev-d8bhv2ic.us.auth0.com',
       clientId: 'LyUdb2oSBSB1gmQaQ2L6gH28POb9vPqF'
-      //domain: 'dev-d8bhv2ic.us.auth0.com',
-      //clientId: '99GTEsKQtrryt4bkYyafn8N0bwiw6QqV'
-    })
+    }),
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -91,3 +110,4 @@ export class AppModule { }
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
