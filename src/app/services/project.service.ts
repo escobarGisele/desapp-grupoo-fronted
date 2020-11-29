@@ -66,4 +66,10 @@ export class ProjectService {
     });
   }
 
+  close(idProject: any) : Observable<any> {
+    const path = this.basePath + `/close/${idProject}`;
+    return this.httpClient.post(path, {}, { 
+      headers: this.headers 
+    });
+  }
 }

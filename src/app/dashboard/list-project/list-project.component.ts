@@ -112,6 +112,17 @@ export class ListProjectComponent implements OnInit {
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
   }
-   
+
+  closeProject(idProject: number){
+    if(window.confirm('Are sure you want to close this project ?')){
+      this.projectService.close(idProject).subscribe(project => {
+        this.listProject = this.listProject.filter(project => project.id != idProject);
+        this.dataSource = new MatTableDataSource(this.listProject);
+        this.dataSource._updateChangeSubscription();  
+        this.listProjectNextToEnd.push(project);
+      });
+    }
+  }
+  
 }
 
