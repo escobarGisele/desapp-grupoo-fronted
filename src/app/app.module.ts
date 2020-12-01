@@ -17,7 +17,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { AngularMaterialModule } from './dashboard/shared/angular-material/angular-material.module';
 import { LoadingComponent } from './dashboard/loading/loading.component';
 import { UserComponent } from './dashboard/user/user.component';
@@ -40,10 +40,7 @@ import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.compo
 
 export class AmountConverterPipe implements PipeTransform {
 
-  constructor(private translate: TranslateService){}
-
   transform(value: number | string, locale?: string): string {
-    console.log(locale);
     return new Intl.NumberFormat(locale, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
@@ -53,6 +50,19 @@ export class AmountConverterPipe implements PipeTransform {
     }).format(Number(value));
   }
 
+}
+
+@Pipe({
+  name: 'currencyDateFormat'
+})
+export class CurrencyDateFormat implements PipeTransform{
+  transform(value: string, currency: string): string {
+      if (currency == 'es'){
+          return formatDate(value , 'dd-MM-yyyy hh:mm:ss','en-US')
+      }else{
+          return formatDate(value , 'MM-dd-yyyy hh:mm:ss','en-US')
+      }
+  }
 }
 
 @NgModule({
@@ -70,7 +80,8 @@ export class AmountConverterPipe implements PipeTransform {
     MessagesComponent,
     CreateEditModalComponent,
     ModalUserComponent,
-    AmountConverterPipe
+    AmountConverterPipe,
+    CurrencyDateFormat
   ],
   imports: [
     HttpClientModule,
