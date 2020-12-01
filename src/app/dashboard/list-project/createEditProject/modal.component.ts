@@ -96,8 +96,8 @@ export class CreateEditModalComponent implements OnInit {
     const project: any = {
       projectId: this.idProject ?? 0,
       name: this.newProjectForm.get('name').value,
-      startDate: formatDate(this.newProjectForm.get('startDate').value, 'yyyy-MM-dd', 'en-us'),
-      endDate: formatDate(this.newProjectForm.get('endDate').value, 'yyyy-MM-dd', 'en-us'),
+      startDate: formatDate(this.newProjectForm.get('startDate').value, 'yyyy-MM-dd hh24:mm:ss', 'en-us'),
+      endDate: formatDate(this.newProjectForm.get('endDate').value, 'yyyy-MM-dd hh24:mm:ss', 'en-us'),
       factor: this.newProjectForm.get('factor').value,
       locationId: this.newProjectForm.get('locationControl').value,
     };
