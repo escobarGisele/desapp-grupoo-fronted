@@ -30,7 +30,7 @@
           <!-- Name Column -->
           <ng-container matColumnDef="startDate">
             <th mat-header-cell *matHeaderCellDef> {{'StartDate'|translate}} </th>
-            <td mat-cell *matCellDef="let projec"> {{projec.startDate}} </td>
+            <td mat-cell *matCellDef="let projec"> {{projec.startDate | currencyDateFormat: translate.currentLang }} </td>
           </ng-container>
           
           <!-- Progress Column -->
