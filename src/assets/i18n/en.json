@@ -48,5 +48,9 @@
     "Date":"Date",
     "TotalCollection":"Total Collection",
     "Open":"Open ",
-    "currencyDateFormat":"date:'MM/dd/yyyy'"
+    "currencyDateFormat":"date:'MM/dd/yyyy'",
+    "RequiredField": "Required field",
+    "MustBeAtLeast4CharactersLong":"Must be at least 4 characters long",
+    "Cancel":"Cancel",
+    "MyData":"My data"
 }
