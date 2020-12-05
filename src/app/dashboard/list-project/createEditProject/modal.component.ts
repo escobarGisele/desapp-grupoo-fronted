@@ -109,12 +109,10 @@ export class CreateEditModalComponent implements OnInit {
     var message = project.id == null ? 'Proyecto creado con exito!' : 'Proyecto actualizado con exito!';
 
     this.projectService.createOrUpdateProject(project).subscribe(data => {
-      console.log(data);
+      this.snackBar.open(message, '', {
+        duration: 4500
+      });
+      this.dialogRef.close(data);
     });
-
-    this.snackBar.open(message, '', {
-      duration: 4500
-    });
-    this.dialogRef.close();
   }
 }

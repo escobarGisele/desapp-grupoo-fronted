@@ -97,17 +97,42 @@ export class ListProjectComponent implements OnInit {
 
   }
   createProject(){
-    const dialogRef = this.dialog.open(CreateEditModalComponent, {});    
+    const dialogRef = this.dialog.open(CreateEditModalComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      this.listProject.push(result);
+      this.dataSource = new MatTableDataSource(this.listProject);
+      this.dataSource._updateChangeSubscription();  
+    });    
   } 
 
   editProject(idProject): void{
     this.projectService.getProjectById(idProject).subscribe(data => {
-      this.dialog.open(CreateEditModalComponent, {
+      const dialogRef = this.dialog.open(CreateEditModalComponent, {
         data: { idProject: idProject, project: data }
+      });
+      dialogRef.afterClosed().subscribe(result=>{
+        console.log(result)
+        this.replaceProjectIfItsNecessary(data);
       });
     });
 
   }
+
+  replaceProjectIfItsNecessary(project: any){
+    let updateItem = this.listProject.find(this.findIndexToUpdate, project.id);
+
+    let index = this.listProject.indexOf(updateItem);
+    
+    this.listProject[index] = project;
+    this.dataSource = new MatTableDataSource(this.listProject);
+    this.dataSource._updateChangeSubscription();
+
+  }
+
+  findIndexToUpdate(newItem) { 
+    return newItem.id === this;
+  }
+
   makeADonation(idProject): void{
     localStorage.setItem('idProject', idProject);
     this.router.navigate(['/donation']);
