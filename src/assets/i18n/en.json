@@ -47,5 +47,6 @@
     "Donation":"Donation",
     "Date":"Date",
     "TotalCollection":"Total Collection",
-    "Open":"Open "
+    "Open":"Open ",
+    "currencyDateFormat":"date:'MM/dd/yyyy'"
 }

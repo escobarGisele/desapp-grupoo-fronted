@@ -47,5 +47,6 @@
     "Donation":"Donación",
     "Date":"Fecha",
     "TotalCollection":"Recaudación Total",
-    "Open":"Abierto"
+    "Open":"Abierto",
+    "currencyDateFormat":"date:'dd/MM/yyyy'"
 }
