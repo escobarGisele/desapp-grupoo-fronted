@@ -1,0 +1,36 @@
+<!-- <form [formGroup]="locationForm" autocomplete="off">
+  <div class="form-group">
+      <mat-form-field>
+          <mat-label>poblacion</mat-label>
+          <input matInput  required id="population" type="number" formControlName="population">
+      </mat-form-field>
+  </div>
+</form>
+ 
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="accent" cdkFocusInitial
+  type="button" style="margin-left: 10px;" (click)= "saveData()" >Ok</button>
+ </div> -->
+ <h1 mat-dialog-title>{{ location.name }}</h1>
+ <div mat-dialog-content>
+   <!-- <p>Aca iria algo </p>
+    -->
+ </div>
+
+<form [formGroup]="locationForm" novalidat autocomplete="off">
+  
+  <div class="form-group" >
+    <mat-form-field>
+      <mat-label>poblacion </mat-label>
+      <input matInput required id="population" name="population" formControlName="population">
+    </mat-form-field>
+  </div>
+
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="accent" cdkFocusInitial [disabled]="locationForm.invalid"
+  type="button" style="margin-left: 10px;" (click)="saveData()">Ok</button>
+ </div>

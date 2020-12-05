@@ -6,8 +6,9 @@
         <div class="col-sm-6 col-xs-6">
           <h2>{{'OpenProjects'| translate}}</h2>
         </div>
-        <div class="col-sm-6 col-xs-6" style="text-align: right;">
-          <button *ngIf="isAdmin" mat-flat-button color="accent" (click)="createProject(project)">+</button>
+        <div class="col-sm-6 col-xs-6" style="text-align: right;" *ngIf="isAdmin" >
+          <button mat-flat-button color="accent" (click)="createProject(project)">+</button>
+          <button mat-flat-button color="primary" (click)="goToLocationList()">{{ 'location' | translate }}</button>
         </div>
       </div>
       

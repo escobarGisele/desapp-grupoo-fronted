@@ -148,6 +148,10 @@ export class ListProjectComponent implements OnInit {
       });
     }
   }
+
+  goToLocationList(){
+    this.router.navigate(['/locations']);
+  }
   
 }
 

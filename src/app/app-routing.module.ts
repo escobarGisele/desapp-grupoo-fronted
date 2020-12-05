@@ -6,7 +6,7 @@ import { DonationComponent } from './dashboard/donation/donation.component';
 import { LoginComponent } from './login/login.component';
 import { ResgisterComponent } from './resgister/resgister.component';
 import { AuthGuardService } from './services/auth-guard.service';
-
+import { ListLocationComponent } from './dashboard/list-location/list-location.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'  },
@@ -15,6 +15,7 @@ const routes: Routes = [
   { path:'user', component : UserComponent },
   { path:'resgister', component : ResgisterComponent},
   { path:'donation', component : DonationComponent, canActivate:[AuthGuardService] },
+  { path:'locations', component : ListLocationComponent, canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

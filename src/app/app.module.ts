@@ -33,6 +33,8 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUserComponent } from './dashboard/user/modal-user/modal-user.component';
+import { ListLocationComponent } from './dashboard/list-location/list-location.component';
+import { ModalEditLocationComponent } from './dashboard/list-location/modal/modal-edit-location.component'
 
 @Pipe({
   name: 'amountConverter'
@@ -81,7 +83,9 @@ export class CurrencyDateFormat implements PipeTransform{
     CreateEditModalComponent,
     ModalUserComponent,
     AmountConverterPipe,
-    CurrencyDateFormat
+    CurrencyDateFormat,
+    ListLocationComponent,
+    ModalEditLocationComponent
   ],
   imports: [
     HttpClientModule,

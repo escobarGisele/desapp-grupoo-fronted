@@ -1,12 +1,9 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { LocationService } from 'src/app/services/location.service';
 import { ProjectService } from 'src/app/services/project.service';
-import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ListProjectComponent } from '../list-project.component';
-import { of } from 'rxjs/internal/observable/of';
 import { formatDate } from '@angular/common';
 
 @Component({

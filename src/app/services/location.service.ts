@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocationService {
+  
   protected basePath = 'https://whispering-spire-55253.herokuapp.com/home/locations';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -22,8 +23,6 @@ export class LocationService {
     return this.httpClient.get(path, { 
       headers: this.headers 
      });
-
-
   }
   
   public getTop10WithMoreTimeWithoutDonations() : Observable<any> {
@@ -32,10 +31,19 @@ export class LocationService {
     
 
     return this.httpClient.get(path, { 
-      headers: this.headers 
-     });
+        headers: this.headers 
+      });
 
   }
   
+  updateInfo(locationUpdated: any) : Observable<any>{
+    const path = this.basePath + '/update' ;
+    
+
+    return this.httpClient.post(path, locationUpdated, { 
+        headers: this.headers 
+      });
+
+  }
 
 }
