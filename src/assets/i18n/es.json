@@ -48,5 +48,10 @@
     "Date":"Fecha",
     "TotalCollection":"Recaudación Total",
     "Open":"Abierto",
-    "currencyDateFormat":"date:'dd/MM/yyyy'"
+    "currencyDateFormat":"date:'dd/MM/yyyy'",
+    "RequiredField":" Campo Requerido",
+    "MustBeAtLeast4CharactersLong":"Debe tener como minimo 4 caracteres",
+    "Cancel":"Cancelar",
+    "MyData":"Mis datos"
+    
 }

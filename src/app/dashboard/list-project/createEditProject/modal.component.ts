@@ -5,6 +5,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { formatDate } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal',
@@ -27,6 +28,7 @@ export class CreateEditModalComponent implements OnInit {
                 private fb: FormBuilder,
                 private projectService: ProjectService, 
                 private snackBar:MatSnackBar,
+                public translate: TranslateService,
                 @Inject(MAT_DIALOG_DATA) public data: any) 
   {
     this.createForm();
@@ -36,6 +38,8 @@ export class CreateEditModalComponent implements OnInit {
       this.location = data.project.location;
       this.locationSelected = this.location.id
     }
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
   }
 
   ngOnInit() {

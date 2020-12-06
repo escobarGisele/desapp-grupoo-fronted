@@ -1,28 +1,27 @@
-<h1 mat-dialog-title>Crear Proyecto</h1>
+<h1 mat-dialog-title>{{'CreateProject'| translate}}</h1>
 <div mat-dialog-content>
-  <!-- <p>Aca iria algo </p>
-   -->
+  
 </div>
 
 <form [formGroup]="newProjectForm" novalidat autocomplete="off">
   
   <div class="form-group" >
     <mat-form-field>
-      <mat-label>Name</mat-label>
+      <mat-label>{{'Name'|translate}}</mat-label>
       <input matInput required minlength="4" id="name" name="name" formControlName="name">
     </mat-form-field>
     <div *ngIf="newProjectForm.get('name').hasError('required') && newProjectForm.get('name').touched" style="margin-top: -20px;">
-      <span class="mda-form-msg">Campo es requerido</span>
+      <span class="mda-form-msg">{{'RequiredField'| translate}}</span>
     </div>
 
     <div *ngIf="newProjectForm.get('name').hasError('minlength') && newProjectForm.get('name')" style="margin-top: -20px;">
-      <span class="mda-form-msg">Debe tener como minimo 4 caracteres</span>
+      <span class="mda-form-msg">{{'MustBeAtLeast4CharactersLong'|translate}}</span>
     </div>
   </div>
 
   <div class="form-group">
     <mat-form-field appearance="fill">
-      <mat-label>Location</mat-label>
+      <mat-label>{{'Location'|translate}}</mat-label>
       <mat-select [(ngModel)]="locationSelected" formControlName="locationControl" [formGroup]="newProjectForm" required>
         <mat-option *ngFor="let elem of locationList" [value]="elem.id">
           {{elem.name + ' (' + elem.province +')'}}
@@ -30,7 +29,7 @@
       </mat-select>
     </mat-form-field>
     <div *ngIf="newProjectForm.get('locationControl').hasError('required') && newProjectForm.get('locationControl').touched" style="margin-top: -20px;">
-      <span class="mda-form-msg">Campo es requerido</span>
+      <span class="mda-form-msg">{{'RequiredField'| translate}}</span>
     </div>
   </div>
   
@@ -40,38 +39,38 @@
         <input type="number" matInput required min="0" max="99999" formControlName="factor">
     </mat-form-field>
     <div *ngIf="newProjectForm.get('factor').hasError('required') && newProjectForm.get('factor').touched" style="margin-top: -20px;">
-      <span class="mda-form-msg">Campo es requerido</span>
+      <span class="mda-form-msg">{{'RequiredField'| translate}}</span>
     </div>
   </div>
 
   <div class="form-group">
     <mat-form-field color="accent" appearance="fill">
-      <mat-label>Start day</mat-label>
+      <mat-label>{{'StartDate'|translate}}</mat-label>
       <input matInput [matDatepicker]="picker1" formControlName="startDate">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>  
     <div *ngIf="newProjectForm.get('startDate').hasError('required') && newProjectForm.get('startDate').touched" style="margin-top: -20px;">
-      <span class="mda-form-msg">Campo es requerido</span>
+      <span class="mda-form-msg">{{'RequiredField'| translate}}</span>
     </div>
   </div>
 
   <div class="form-group">
     <mat-form-field color="accent" appearance="fill">
-      <mat-label>End day</mat-label>
+      <mat-label>{{'EndDate'|translate}}</mat-label>
       <input matInput [matDatepicker]="picker2" required formControlName="endDate">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
     <div *ngIf="newProjectForm.get('endDate').hasError('required') && newProjectForm.get('endDate').touched" style="margin-top: -20px;">
-      <span class="mda-form-msg">Campo es requerido</span>
+      <span class="mda-form-msg">{{'RequiredField'| translate}}</span>
     </div>
   </div>
 
 </form>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoClick()">{{'Cancel'|translate}}</button>
   <button mat-flat-button color="accent" cdkFocusInitial [disabled]="newProjectForm.invalid"
   type="button" style="margin-left: 10px;" (click)="saveProject()">Ok</button>
  </div>
