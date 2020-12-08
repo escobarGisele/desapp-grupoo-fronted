@@ -28,6 +28,9 @@ export class Auth2Service {
       return this.httpClient.post(path, body, { headers });
     }
     
+    public get loggedIn(): boolean {
+      return (localStorage.getItem('auth_token') !== null);
+    }
 
 
 }
